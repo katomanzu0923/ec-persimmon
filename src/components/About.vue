@@ -1,5 +1,5 @@
 <template>
 	<div>
-		about-persimmon
+		<textarea name="you" id="" cols="30" rows="10"></textarea>
 	</div>
 </template>
