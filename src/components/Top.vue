@@ -71,8 +71,7 @@ export default {
 	button {
 		border: none;
 	}
-	.top-body {
-	}
+
 	.pag {
 		position: absolute;
 		top: 20%;
