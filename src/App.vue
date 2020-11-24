@@ -1,6 +1,7 @@
 <template>
 <div>
   <Header></Header>
+  <router-link>a</router-link>
 </div>
 </template>
 

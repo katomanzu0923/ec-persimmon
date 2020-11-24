@@ -5,6 +5,7 @@ import Top from './components/Top.vue'
 import Buy from './components/Buy.vue'
 import About from './components/About.vue'
 import Contact from './components/Contact.vue'
+import router from "./router"
 
 Vue.config.productionTip = false
 Vue.component("Header", Header)
@@ -15,5 +16,6 @@ Vue.component("Contact", Contact)
 
 
 new Vue({
+  router: router,
   render: h => h(App),
 }).$mount('#app')

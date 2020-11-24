@@ -24,8 +24,11 @@
 			</div>
 		</div>
 		<div class="totall">
-				{{totallPrice}}
-			</div>
+				{{totallPrice}}円(送料込み)
+		</div>
+		<div class="purches">
+			<button @click="toU">購入する</button>
+		</div>
 	</div>
 </template>
 
@@ -72,6 +75,9 @@ export default {
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)
 			this.totallPrice = result
+		},
+		toU() {
+			this.$router.push('Perches');
 		}
 	}
 }
@@ -119,5 +125,8 @@ input {
 .totall {
 	text-align: center;
 	margin: 30px;
+}
+.purches {
+	text-align: center;
 }
 </style>
