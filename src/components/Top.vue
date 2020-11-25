@@ -1,16 +1,22 @@
 <template>
 	<div class="top-body">
-		
-      <!-- ページ全体、このleftをtransitionでスライドさせてページを動かす -->
       <div class="pag">
-        <div v-if="isSeason == '1'" class="page"><img src="@/assets/name4.png" alt="a"></div>
-        <div v-else-if="isSeason == '2'" class="page"><img src="@/assets/top_jp_bac.png" alt="a"></div>
-        <div v-else-if="isSeason == '3'" class="page"><img src="@/assets/name4.png" alt="a"></div>
-				<div v-else><img src="@/assets/top_jp_bac.png" alt="a"></div>
-      </div>
+					<transition name="fade">
+						<div v-if="isSeason == '1'" class="page"><img src="@/assets/name4.png" alt="a"></div>
+					</transition>
+					<transition name="fade">
+						<div v-if="isSeason == '2'" class="page"><img src="@/assets/top_jp_bac.png" alt="a"></div>
+					</transition>
+					<transition name="fade">
+						<div v-if="isSeason == '3'" class="page"><img src="@/assets/kaki.png" alt="a"></div>
+					</transition>
+					<transition name="fade">
+						<div v-if="isSeason == '4'"><img src="@/assets/top_jp_bac.png" alt="a"></div>
+					</transition>
+      </div>	
 			<button @click="back()" :class="[isButton === true? 'none01': 'none01',isButton01 === true? 'none02':'none01']" id="is">{{ backSeason }}</button>
 			<button id="it" @click="next()" :class="[isButton === true? 'none02': 'none01',isButton01 === true? 'none01':'none01']" >{{ nextSeason }}</button>
-			<div class="hooter">@copy right katomanzu</div>
+			<div class="hooter">@copy right katomanzu</div>	
 	</div>
 </template>
 
@@ -70,8 +76,52 @@ export default {
 	}
 	button {
 		border: none;
+		background: none;
+		outline: none;
+		color: rgb(233, 155, 67);
+		font-weight: rgb(233, 155, 67);
+		font-size: 1rem;
+	}
+	button:hover {
+		color: rgb(226, 129, 19);
+		font-weight: bold;
+	}
+	#is::after{ 
+		display: block; 
+		position: absolute;
+		top: -10px;
+		left: -50%;
+		width: 40px; 
+		height: 40px; 
+		border-top: 4px solid rgb(233, 155, 67); 
+		border-right: 4px solid rgb(233, 155, 67); 
+		-webkit-transform: rotate(-135deg); 
+		content: ""; 
+	}
+	
+	
+	#it::after{ 
+		display: block; 
+		position: absolute;
+		top: -10px;
+		right: -50%;
+		width: 40px; 
+		height: 40px; 
+		border-top: 4px solid rgb(233, 155, 67); 
+		border-right: 4px solid rgb(233, 155, 67); 
+		-webkit-transform: rotate(45deg); 
+		content: ""; 
 	}
 
+	.fade-enter-active {
+  transition: all 3s ease;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave{
+	opacity: 1;
+}
 	.pag {
 		position: absolute;
 		top: 20%;

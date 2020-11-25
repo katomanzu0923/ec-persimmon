@@ -13,6 +13,7 @@
 					<label for="content">ご要望内容</label>
 					<textarea name="" id="content" cols="30" rows="10" v-model="content" v-on:change="contentCheck()"></textarea>
 					<div class="result">{{contentResult}}</div>
+					<div id="circle" :class="{up:change01}">1</div><div id="circle02" :class="{up:change02}">2</div><div id="circle03" :class="{up:change03}">3</div><button >送信</button>
 			</div>
 		</div>
 	</div>
@@ -64,12 +65,42 @@ export default {
 label {
 	display: block;
 }
+button {
+  text-decoration: none;
+  color: #66d882;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: solid 1px rgb(0, 0, 0);
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+	font-weight: 0.25rem;
+	line-height: 80px;
+}
+
+button:hover {
+  background: rgb(233, 155, 67);
+}
+input, textarea {
+	outline: none;
+}
 .contact {
 	text-align: center;
 	margin-top: 100px;
 }
 
 #circle {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 50%;
+	border: 1px solid black;
+	line-height: 30px;
+	margin: 10px;
+}
+#circle02 {
   width: 50px;
   height: 50px;
   display: inline-block;
@@ -78,17 +109,28 @@ label {
 	line-height: 50px;
 	margin: 10px;
 }
+#circle03 {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  border-radius: 50%;
+	border: 1px solid black;
+	line-height: 70px;
+	margin: 10px;
+}
 .contact-area {
-	border: 1px solid grey;
-	position: absolute;
+	border: 1px solid rgb(255, 174, 0);
 	width:60%;
 	left: 20%;
 	height: 50%;
+	margin: 0 20%;
+	color: rgb(255, 174, 0);
 }
 .result {
 	margin: 10px;
 }
 .up {
-	background: blue;
+	background: rgb(233, 155, 67);
+	color: green;
 }
 </style>

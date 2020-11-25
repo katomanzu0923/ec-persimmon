@@ -2,7 +2,7 @@
 	<div class="header">
 		<div class="header-body">
 			<div>
-				<p>柿の販売所</p>
+				<p><span class="title-f">柿</span>の販売所</p>
 			</div>
 			<div class="header-menu">
 				<button @click="currentComponet = 'top';  change_top()" class="top">
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$main-color: rgba(210, 105, 30, 0.226); 
+$main-color: rgba(230, 132, 21, 0.562); 
   button {
 		padding: 1%;
 		width: 30%;
@@ -108,13 +108,24 @@ $main-color: rgba(210, 105, 30, 0.226);
 	}
 	p {
 		padding: 1%;
+		font-size: 2rem;
+		color: green;
 	}
+
   .header-body {
 		position: relative;
 		height: 150px;
 		background: $main-color;
 		color: $main-color;
 		text-align: center;
+	}
+	.title-f {
+		display: inline-block;
+		font-family: 'Noto Sans JP', sans-serif;
+		transform: rotate(-25deg);
+		font-weight: bold;
+		margin: 5px;
+		font-size: 2.5rem;
 	}
 	.header-menu {
 		position: absolute;
@@ -125,10 +136,12 @@ $main-color: rgba(210, 105, 30, 0.226);
 		justify-content: center;
 		align-content: space-between;
 		margin-bottom: 10px;
+		color:green;
 	}
 	.top	{
 		border-left: 1px solid green;
 		position: relative;
+		color:green;
 	}
 	.underDwon::before {
 		filter: opacity(0);
@@ -149,6 +162,7 @@ $main-color: rgba(210, 105, 30, 0.226);
 		border-left: 1px solid green;
 		border-right: 1px solid green;
 		position: relative;
+		color:green;
 	}
 	.underBuy::before { 
 	content:"";
@@ -163,6 +177,7 @@ $main-color: rgba(210, 105, 30, 0.226);
 	.about {
 		border-right: 1px solid green;
 		position: relative;
+		color:green;
 	}
 	.underAbout::before { 
 	content:"";
@@ -177,6 +192,7 @@ $main-color: rgba(210, 105, 30, 0.226);
 	.contact {
 		border-right: 1px solid green;
 		position: relative;
+		color:green;
 	}
 	.underContact::before { 
 	content:"";
