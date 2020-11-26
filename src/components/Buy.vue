@@ -29,9 +29,11 @@
 		<div class="purches">
 			<button @click="perches()">購入する</button>
 		</div>
-		<div class="perches-body" v-if="isUp == true">
-			<Perches></Perches>
-		</div>
+		<transition name="fade">
+			<div class="perches-body" v-if="isUp == true">
+				<Perches></Perches>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -110,6 +112,15 @@ input {
 	width: 50px;
 	text-align: end;
 	margin: 5px;
+}
+.fade-enter-active {
+  transition: all 0.25s ease;
+}
+.fade-enter{
+  opacity: 0;
+}
+.fade-enter-to {
+	opacity: 1;
 }
 .buy-title {
 	margin: 1%;
