@@ -1,7 +1,7 @@
 <template>
 	<div class="buy-body">
 		<div class="buy-title">
-			<h1>購入ページ</h1>
+			<h1>商品一覧</h1>
 		</div>
 		<div class="buy-area">
 			<div class="nomass">
@@ -24,14 +24,14 @@
 			</div>
 		</div>
 		<div class="totall">
-				{{totallPrice}}円(送料一律500円含む)
+				{{price}}円(送料一律500円含む)
 		</div>
 		<div class="purches">
 			<button @click="perches()">購入する</button>
 		</div>
 		<transition name="fade">
-			<div class="perches-body" v-if="isUp == true">
-				<Perches></Perches>
+			<div class="perches-body" v-if="isUp == 'up'">
+				<Perches :price="price" :number01="number01" :number02="number02" :nubmer03="number03" :number04="number04"  @isoff="of"></Perches>
 			</div>
 		</transition>
 	</div>
@@ -43,12 +43,13 @@ export default {
   components: { Perches },
 	data() {
 		return {
+			number:"4",
 			number01: 0,
 			number02: 0,
 			number03: 0,
 			number04: 0,
-			totallPrice: "0",
-			isUp: false
+			price: "0",
+			isUp: "down"
 		}
 	},
 	methods: {
@@ -58,7 +59,8 @@ export default {
 			let number03 = this.number03
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
-			this.totallPrice = result
+			this.price = result
+			this.$emit("emit", this.price);
 		},
 		b() {
 			let number01 = this.number01
@@ -85,7 +87,10 @@ export default {
 			this.totallPrice = result
 		},
 		perches() {
-			this.isUp = true
+			this.isUp = 'up'
+		},
+		of(){
+			this.isUp = "down"
 		}
 	}
 }

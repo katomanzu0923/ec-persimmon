@@ -2,13 +2,13 @@
 	<div class="top-body">
       <div class="pag">
 					<transition name="fade">
-						<div v-if="isSeason == '1'" class="page"><img src="@/assets/name4.png" alt="a"></div>
+						<div v-if="isSeason == '1'" class="page"><img src="@/assets/name4.png" alt="a" ></div>
 					</transition>
 					<transition name="fade">
 						<div v-if="isSeason == '2'" class="page"><img src="@/assets/top_jp_bac.png" alt="a"></div>
 					</transition>
 					<transition name="fade">
-						<div v-if="isSeason == '3'" class="page"><img src="@/assets/kaki.png" alt="a"></div>
+						<div v-if="isSeason == '3'" class="page"><img src="@/assets/kaki.png" alt="a" id="kaki"></div>
 					</transition>
 					<transition name="fade">
 						<div v-if="isSeason == '4'"><img src="@/assets/top_jp_bac.png" alt="a"></div>
@@ -16,7 +16,6 @@
       </div>	
 			<button @click="back()" :class="[isButton === true? 'none01': 'none01',isButton01 === true? 'none02':'none01']" id="is">{{ backSeason }}</button>
 			<button id="it" @click="next()" :class="[isButton === true? 'none02': 'none01',isButton01 === true? 'none01':'none01']" >{{ nextSeason }}</button>
-			<div class="hooter">@copy right katomanzu</div>	
 	</div>
 </template>
 
@@ -70,6 +69,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$main-color: #66cc9998;
+
   img {
 		width: 100%;
 		height: 500px;
@@ -78,12 +80,12 @@ export default {
 		border: none;
 		background: none;
 		outline: none;
-		color: rgb(233, 155, 67);
+		color: $main-color;
 		font-weight: rgb(233, 155, 67);
 		font-size: 1rem;
 	}
 	button:hover {
-		color: rgb(226, 129, 19);
+		color: #3ce08ee7;
 		font-weight: bold;
 	}
 	#is::after{ 
@@ -93,8 +95,8 @@ export default {
 		left: -50%;
 		width: 40px; 
 		height: 40px; 
-		border-top: 4px solid rgb(233, 155, 67); 
-		border-right: 4px solid rgb(233, 155, 67); 
+		border-top: 4px solid $main-color; 
+		border-right: 4px solid $main-color;
 		-webkit-transform: rotate(-135deg); 
 		content: ""; 
 	}
@@ -107,8 +109,8 @@ export default {
 		right: -50%;
 		width: 40px; 
 		height: 40px; 
-		border-top: 4px solid rgb(233, 155, 67); 
-		border-right: 4px solid rgb(233, 155, 67); 
+		border-top: 4px solid $main-color; 
+		border-right: 4px solid $main-color; 
 		-webkit-transform: rotate(45deg); 
 		content: ""; 
 	}
@@ -124,10 +126,9 @@ export default {
 }
 	.pag {
 		position: absolute;
-		top: 20%;
-		width: 80%;
-		margin-top: 5%;
-		left: 10%;
+		bottom: 0;
+		width: 100%;
+		left: 0;
 
 	}
 	.none01 {
@@ -139,13 +140,17 @@ export default {
 	}
 	#is {
 		position: absolute;
-		top: 40%;
+		top: 50%;
 		left: 0;
 	}
 	#it {
 		position: absolute;
-		top: 40%;
+		top: 50%;
 		right: 0;
+	}
+	#kaki {
+		height: 800px;
+		width: 100%;
 	}
 	.hooter {
 		position: absolute;

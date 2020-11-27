@@ -86,6 +86,9 @@ button:hover {
 input, textarea {
 	outline: none;
 }
+.contact-body {
+	display: block;
+}
 .contact {
 	text-align: center;
 	margin-top: 100px;

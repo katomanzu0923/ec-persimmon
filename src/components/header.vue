@@ -1,14 +1,10 @@
 <template>
 	<div class="header">
 		<div class="header-body">
-			<div>
-				<p><span class="title-f">柿</span>の販売所</p>
+			<div class="lo">
+				<img src="@/assets/fuyukaki.png" alt="" class="logo">
 			</div>
 			<div class="header-menu">
-				<button @click="currentComponet = 'top';  change_top()" class="top">
-					{{top_menu }}
-					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
-				</button>
 				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
 					{{buy_menu}}
 					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
@@ -21,8 +17,10 @@
 					{{contact_menu}}
 					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
 				</button>
-			</div>
-			<div class="header-current-body">
+				<button @click="currentComponet = 'top';  change_top()" class="top">
+					{{ price }}円 レジへ
+					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
+				</button>
 			</div>
 		</div>
 		
@@ -39,7 +37,7 @@ export default {
 			currentComponet: "Top",
 			number: "3",
 			top_menu: "Top",
-			buy_menu: "購入",
+			buy_menu: "商品一覧",
 			about_menu: "富有柿について",
 			contact_menu: "お問い合わせ",
 			isActiveTop: "off",
@@ -48,10 +46,16 @@ export default {
 			isActiveContact: "off"
 		}
 	},
+	props: {
+		price: {
+			type: Number,
+			default: 0
+		}
+	},
 	methods: {
 		change_top() {
 			this.top_menu = "選択中",
-			this.buy_menu = "購入",
+			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "お問い合わせ"
 			this.isActiveTop = "on"
@@ -61,7 +65,7 @@ export default {
 		},
 		change_buy()  {
 			this.top_menu = "Top",
-			this.buy_menu = "選択中",
+			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "お問い合わせ"
 			this.isActiveTop = "off",
@@ -71,7 +75,7 @@ export default {
 		},
 		change_about()  {
 			this.top_menu = "Top",
-			this.buy_menu = "購入",
+			this.buy_menu = "商品一覧",
 			this.about_menu = "選択中",
 			this.contact_menu = "お問い合わせ"
 			this.isActiveTop = "off",
@@ -81,7 +85,7 @@ export default {
 		},
 		change_contact()  {
 			this.top_menu = "Top",
-			this.buy_menu = "購入",
+			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "選択中"
 			this.isActiveTop = "off",
@@ -94,9 +98,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$main-color: rgba(230, 132, 21, 0.562); 
+$main-color: #66cc9998;
   button {
-		padding: 1%;
+		padding: 2%;
 		width: 30%;
 		background: transparent;
     outline: 0;
@@ -111,37 +115,43 @@ $main-color: rgba(230, 132, 21, 0.562);
 		font-size: 2rem;
 		color: green;
 	}
-
+	.lo {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 2%;
+	}
+	.logo {
+		width: 300px;
+		height: 50px;
+	}
   .header-body {
 		position: relative;
-		height: 150px;
-		background: $main-color;
+		height: 115px;
 		color: $main-color;
 		text-align: center;
+		background: #fff;
+		border-bottom:1px solid rgba(128, 128, 128, 0.459);
 	}
-	.title-f {
-		display: inline-block;
-		font-family: 'Noto Sans JP', sans-serif;
-		transform: rotate(-25deg);
-		font-weight: bold;
-		margin: 5px;
-		font-size: 2.5rem;
-	}
+	
 	.header-menu {
 		position: absolute;
-		bottom: 0;
 		display: flex;
-		width: 80%;
-		left: 10%;
-		justify-content: center;
-		align-content: space-between;
-		margin-bottom: 10px;
+		width: 50%;
+		right: 0;
+		justify-content: start;
+		margin: 2% 0;
+		align-content: space-around;
 		color:green;
+		top: 0;
+		height: 10px;
+		
 	}
 	.top	{
 		border-left: 1px solid green;
 		position: relative;
 		color:green;
+		padding-bottom: 40px;
 	}
 	.underDwon::before {
 		filter: opacity(0);
@@ -151,11 +161,10 @@ $main-color: rgba(230, 132, 21, 0.562);
    display:block;
    width:80%;
    height:3px;
-   background-color:#0097A7;
+   background-color:#66cc9998;
    position:absolute;
    bottom:-10px;
-   left:10%;
-		filter: opacity(100%);
+   left:10%;filter: opacity(100%);
 	}
 
 	.buy {
@@ -163,13 +172,14 @@ $main-color: rgba(230, 132, 21, 0.562);
 		border-right: 1px solid green;
 		position: relative;
 		color:green;
+		padding-bottom: 40px;
 	}
 	.underBuy::before { 
 	content:"";
    display:block;
    width:80%;
    height:3px;
-   background-color:#0097A7;
+   background-color:#66cc9998;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
@@ -178,28 +188,30 @@ $main-color: rgba(230, 132, 21, 0.562);
 		border-right: 1px solid green;
 		position: relative;
 		color:green;
+		padding-bottom: 40px;
 	}
 	.underAbout::before { 
 	content:"";
    display:block;
    width:80%;
    height:3px;
-   background-color:#0097A7;
+   background-color:#66cc9998;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
 	}
 	.contact {
-		border-right: 1px solid green;
+	
 		position: relative;
 		color:green;
+		padding-bottom: 40px;
 	}
 	.underContact::before { 
 	content:"";
    display:block;
    width:80%;
    height:3px;
-   background-color:#0097A7;
+   background-color: #66cc9998;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
