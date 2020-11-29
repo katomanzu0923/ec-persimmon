@@ -13,7 +13,11 @@
 					<transition name="fade">
 						<div v-if="isSeason == '4'"><img src="@/assets/top_jp_bac.png" alt="a"></div>
 					</transition>
-      </div>	
+      </div>
+			<div class="right">
+				<p class="right-text">秋の魅力をあなたのもとへ</p>
+				<p class="right-text02">今が食べ頃です</p>
+			</div>
 			<button @click="back()" :class="[isButton === true? 'none01': 'none01',isButton01 === true? 'none02':'none01']" id="is">{{ backSeason }}</button>
 			<button id="it" @click="next()" :class="[isButton === true? 'none02': 'none01',isButton01 === true? 'none01':'none01']" >{{ nextSeason }}</button>
 	</div>
@@ -127,9 +131,8 @@ $main-color: #66cc9998;
 	.pag {
 		position: absolute;
 		bottom: 0;
-		width: 100%;
+		width: 70%;
 		left: 0;
-
 	}
 	.none01 {
 		display: inline-block;
@@ -152,15 +155,22 @@ $main-color: #66cc9998;
 		height: 800px;
 		width: 100%;
 	}
-	.hooter {
+	.right {
 		position: absolute;
-		position: fixed;
-		bottom: 0;
-		background: rgba(255, 208, 0, 0.466);
-		height: 3%;
+		right: 0%;
+		width: 30%;
+		height: 100%;
+    writing-mode: vertical-rl;
+		font-size: 2rem;
+		color: rgb(233, 155, 67);
+	}
+	.right-text {
+		position: absolute;
 		left: 0;
-		width: 100%;
-		text-align: center;
-
+		margin: 20%;
+	}
+	.right-text02 {
+		padding-top: 30%;
+		margin: 20%;
 	}
 </style>

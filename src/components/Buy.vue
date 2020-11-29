@@ -4,31 +4,39 @@
 			<h1>商品一覧</h1>
 		</div>
 		<div class="buy-area">
-			<div class="nomass">
-				<div class="buy-title">個別に購入</div>
-				<img src="@/assets/name4.png" alt="">
-				<div><p>選択してください（送料一律500円）</p></div>
-				<label for="">傷なし一つ500円</label>
-				<input type="text" value="" v-model="number01" v-on:input="a()">個<br>
-				<label for="">傷あり一つ300円</label>
-				<input type="text" value="" v-model="number02" v-on:input="b()">個
+			<div class="box">
+				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
+				<div class="buy-titles">傷なし富有柿（個別）</div>
+				<div class="price">
+					<label for="price">一つ500円</label><input type="text" value="" v-model="number01" v-on:input="a()">個<br>
+				</div>
 			</div>
-			<div class="mass">
-				<div class="buy-title">まとめて購入</div>
-				<img src="@/assets/name4.png" alt="">
-				<div><P>選択してください（送料一律500円）</P></div>
-				<label for="">傷なし一ケース８個入り3500円</label>
-				<input type="text" value="" v-model="number03" v-on:input="c()">ケース<br>
-				<label for="">傷あり一ケース８個入り2000円</label>
-				<input type="text" value="" v-model="number04" v-on:input="d()">個
+			<div class="box">
+				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
+				<div class="buy-titles">傷あり富有柿（個別）</div>
+				<div class="price">
+					<label for="price">一つ300円</label><input type="text" value="" v-model="number02" v-on:input="b()">個<br>
+				</div>
+			</div>
+			<div class="box">
+				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
+				<div class="buy-titles">傷なし富有柿（一ケース）</div>
+				<div class="price">
+					<label for="price">一つ3500円</label><input type="text" value="" v-model="number03" v-on:input="c()">個<br>
+				</div>
+			</div>
+			<div class="box">
+				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
+				<div class="buy-titles">傷なし富有柿（一ケース）</div>
+				<div class="price">
+					<label for="price">一つ3000円</label><input type="text" value="" v-model="number04" v-on:input="d()">個<br>
+				</div>
 			</div>
 		</div>
 		<div class="totall">
-				{{price}}円(送料一律500円含む)
+				<h4>購入予定金額{{price}}円(送料一律500円含む)</h4>
 		</div>
-		<div class="purches">
-			<button @click="perches()">購入する</button>
-		</div>
+		<button @click="perches()">レジにすすむ</button>
 		<transition name="fade">
 			<div class="perches-body" v-if="isUp == 'up'">
 				<Perches :price="price" :number01="number01" :number02="number02" :nubmer03="number03" :number04="number04"  @isoff="of"></Perches>
@@ -60,7 +68,6 @@ export default {
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
 			this.price = result
-			this.$emit("emit", this.price);
 		},
 		b() {
 			let number01 = this.number01
@@ -68,7 +75,7 @@ export default {
 			let number03 = this.number03
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
-			this.totallPrice = result
+			this.price = result
 		},
 		c() {
 			let number01 = this.number01
@@ -76,7 +83,7 @@ export default {
 			let number03 = this.number03
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
-			this.totallPrice = result
+			this.price = result
 		},
 		d() {
 			let number01 = this.number01
@@ -84,7 +91,7 @@ export default {
 			let number03 = this.number03
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
-			this.totallPrice = result
+			this.price = result
 		},
 		perches() {
 			this.isUp = 'up'
@@ -97,18 +104,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$main-color: rgb(231, 163, 85);
 h1 {
-	margin: 50px;
+	margin: 5px;
+	padding: 1px;
 	text-align: center;
-	font-size: 1rem;
-	color: green;
+	font-size: 2rem;
+	color: $main-color;
+}
+h4 {
+	display: inline-block;
+	margin-right: 5px;
 }
 p {
 	margin: 5px;
 }
 img {
-	width: 100px;
-	height: 100px;
+	width: 200px;
+	height: 150px;
+	margin: 5px;
 }
 label{
 	margin: 5px;
@@ -117,6 +131,15 @@ input {
 	width: 50px;
 	text-align: end;
 	margin: 5px;
+}
+button {
+	padding: 5px;
+	width: 20%;
+	margin: 0 40%;
+	border: 1px solid $main-color;
+}
+.image {
+	width: 100%;
 }
 .fade-enter-active {
   transition: all 0.25s ease;
@@ -128,41 +151,44 @@ input {
 	opacity: 1;
 }
 .buy-title {
-	margin: 1%;
-	clear: green;
+	margin: 1% auto;
+	width: 25%;
+	text-align: center;
+	font-size: 2rem;
+	border-top: 1px solid rgba(107, 103, 103, 0.904);
+	border-bottom: 1px solid $main-color;
+	border-radius: 20px;
 }
 .buy-area {
 	display: flex;
 	justify-content: space-evenly;
 }
-.nomass {
-	display: inline-block;
-	border: 1px dotted rgb(255, 174, 0);
-	width: 30%;
-	padding: 10px;
+.buy-titles {
 	text-align: center;
-	color: green;
+	padding: 5px;
+	font-size: 1rem;
+	margin: 1px;
 }
-.nomass-title {
-	display: block;
-}
-.mass {
-	display: inline-block;
-	border: 1px dotted rgb(255, 174, 0);
-	color: green;
-	width: 30%;
-	padding: 10px;
-	text-align: center;
-}
+.box {
+	position: relative;
+	margin: 40px;
+	border: 3px solid $main-color;
+	border-radius: 8px;
+	}
 .totall {
+	display: inline-block;
 	text-align: center;
-	margin: 30px;
+	width: 60%;
+	margin: 10px 20%;
 
-}
-.purches {
-	text-align: center;
 }
 #off {
 	display: none;
+}
+.price {
+	width: 100%;
+	bottom: 0;
+	border-top: 1px dotted $main-color;
+	text-align: center;
 }
 </style>

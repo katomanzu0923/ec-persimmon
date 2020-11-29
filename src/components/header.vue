@@ -5,21 +5,21 @@
 				<img src="@/assets/fuyukaki.png" alt="" class="logo">
 			</div>
 			<div class="header-menu">
-				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
-					{{buy_menu}}
-					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
+				<button @click="currentComponet = 'top';  change_top()" class="top">
+					{{top_menu}}
+					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
 				</button>
 				<button @click="currentComponet = 'about'; change_about()" class="about">
 					{{about_menu}}
 					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
 				</button>
+				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
+					{{buy_menu}}
+					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
+				</button>
 				<button @click="currentComponet = 'contact';  change_contact()" class="contact">
 					{{contact_menu}}
 					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
-				</button>
-				<button @click="currentComponet = 'top';  change_top()" class="top">
-					{{ price }}円 レジへ
-					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
 				</button>
 			</div>
 		</div>
@@ -36,7 +36,7 @@ export default {
 		return {
 			currentComponet: "Top",
 			number: "3",
-			top_menu: "Top",
+			top_menu: "私たちについて",
 			buy_menu: "商品一覧",
 			about_menu: "富有柿について",
 			contact_menu: "お問い合わせ",
@@ -64,7 +64,7 @@ export default {
 			this.isActiveContact = "off"
 		},
 		change_buy()  {
-			this.top_menu = "Top",
+			this.top_menu = "私たちについて",
 			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "お問い合わせ"
@@ -74,7 +74,7 @@ export default {
 			this.isActiveContact = "off"
 		},
 		change_about()  {
-			this.top_menu = "Top",
+			this.top_menu = "私たちについて",
 			this.buy_menu = "商品一覧",
 			this.about_menu = "選択中",
 			this.contact_menu = "お問い合わせ"
@@ -84,7 +84,7 @@ export default {
 			this.isActiveContact = "off"
 		},
 		change_contact()  {
-			this.top_menu = "Top",
+			this.top_menu = "Top私たちについて",
 			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "選択中"
@@ -129,9 +129,10 @@ $main-color: #66cc9998;
 		position: relative;
 		height: 115px;
 		color: $main-color;
+		width: 100%;
 		text-align: center;
 		background: #fff;
-		border-bottom:1px solid rgba(128, 128, 128, 0.459);
+		border-bottom:1px solid grey ;
 	}
 	
 	.header-menu {
@@ -145,10 +146,10 @@ $main-color: #66cc9998;
 		color:green;
 		top: 0;
 		height: 10px;
-		
 	}
 	.top	{
 		border-left: 1px solid green;
+		border-right: 1px solid green;
 		position: relative;
 		color:green;
 		padding-bottom: 40px;
@@ -185,7 +186,6 @@ $main-color: #66cc9998;
    left:10%;filter: opacity(100%);
 	}
 	.about {
-		border-right: 1px solid green;
 		position: relative;
 		color:green;
 		padding-bottom: 40px;
