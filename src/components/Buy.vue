@@ -136,7 +136,11 @@ button {
 	padding: 5px;
 	width: 20%;
 	margin: 0 40%;
+	color: white;
+	background: orange;
 	border: 1px solid $main-color;
+	filter: drop-shadow(0 0 0.75rem rgb(221, 99, 17));
+
 }
 .image {
 	width: 100%;
@@ -174,6 +178,7 @@ button {
 	margin: 40px;
 	border: 3px solid $main-color;
 	border-radius: 8px;
+	
 	}
 .totall {
 	display: inline-block;

@@ -73,9 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-$main-color: #66cc9998;
-
+  $main-color: rgb(231, 163, 85);
+  $sub-color: rgb(230, 133, 23);
   img {
 		width: 100%;
 		height: 500px;
@@ -85,11 +84,10 @@ $main-color: #66cc9998;
 		background: none;
 		outline: none;
 		color: $main-color;
-		font-weight: rgb(233, 155, 67);
 		font-size: 1rem;
 	}
 	button:hover {
-		color: #3ce08ee7;
+		color: $sub-color;
 		font-weight: bold;
 	}
 	#is::after{ 

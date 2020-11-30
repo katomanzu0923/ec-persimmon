@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="header-body">
-			<div class="lo">
+			<div class="lo" @click="currentComponet='Top'">
 				<img src="@/assets/fuyukaki.png" alt="" class="logo">
 			</div>
 			<div class="header-menu">
@@ -98,7 +98,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$main-color: #66cc9998;
+$main-color: rgb(231, 163, 85);
+$sub-color: rgb(230, 133, 23);
   button {
 		padding: 2%;
 		width: 30%;
@@ -107,13 +108,12 @@ $main-color: #66cc9998;
 		border: none;
   }
 	button:focus {
-		color: green;
 		background: transparent;
 	}
 	p {
 		padding: 1%;
 		font-size: 2rem;
-		color: green;
+		color: $main-color;
 	}
 	.lo {
 		position: absolute;
@@ -143,15 +143,15 @@ $main-color: #66cc9998;
 		justify-content: start;
 		margin: 2% 0;
 		align-content: space-around;
-		color:green;
+		color:$main-color;
 		top: 0;
 		height: 10px;
 	}
 	.top	{
-		border-left: 1px solid green;
-		border-right: 1px solid green;
+		border-left: 1px solid $main-color;
+		border-right: 1px solid $main-color;
 		position: relative;
-		color:green;
+		color:$main-color;
 		padding-bottom: 40px;
 	}
 	.underDwon::before {
@@ -162,17 +162,17 @@ $main-color: #66cc9998;
    display:block;
    width:80%;
    height:3px;
-   background-color:#66cc9998;
+   background-color:$sub-color;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
 	}
 
 	.buy {
-		border-left: 1px solid green;
-		border-right: 1px solid green;
+		border-left: 1px solid $main-color;
+		border-right: 1px solid $main-color;
 		position: relative;
-		color:green;
+		color:$main-color;
 		padding-bottom: 40px;
 	}
 	.underBuy::before { 
@@ -180,14 +180,14 @@ $main-color: #66cc9998;
    display:block;
    width:80%;
    height:3px;
-   background-color:#66cc9998;
+   background-color:$sub-color;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
 	}
 	.about {
 		position: relative;
-		color:green;
+		color:$main-color;
 		padding-bottom: 40px;
 	}
 	.underAbout::before { 
@@ -195,7 +195,7 @@ $main-color: #66cc9998;
    display:block;
    width:80%;
    height:3px;
-   background-color:#66cc9998;
+   background-color:$sub-color;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
@@ -203,7 +203,7 @@ $main-color: #66cc9998;
 	.contact {
 	
 		position: relative;
-		color:green;
+		color:$main-color;
 		padding-bottom: 40px;
 	}
 	.underContact::before { 
@@ -211,7 +211,7 @@ $main-color: #66cc9998;
    display:block;
    width:80%;
    height:3px;
-   background-color: #66cc9998;
+   background-color: $sub-color;
    position:absolute;
    bottom:-10px;
    left:10%;filter: opacity(100%);
