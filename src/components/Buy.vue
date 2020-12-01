@@ -34,12 +34,12 @@
 			</div>
 		</div>
 		<div class="totall">
-				<h4>購入予定金額{{price}}円(送料一律500円含む)</h4>
+				<h3 v-if="noPay">購入商品の個数を記述ください</h3><h3 v-else >購入予定金額{{price}}円(送料一律500円含む)</h3>
+				<button @click="perches()" :disabled="noPay">レジにすすむ</button>
 		</div>
-		<button @click="perches()">レジにすすむ</button>
 		<transition name="fade">
 			<div class="perches-body" v-if="isUp == 'up'">
-				<Perches :price="price" :number01="number01" :number02="number02" :nubmer03="number03" :number04="number04"  @isoff="of"></Perches>
+				<Perches :price="price" :number01="number01" :middlePrice01="middlePrice01" :number02="number02" :middlePrice02="middlePrice02" :nubmer03="number03" :middlePrice03="middlePrice03" :number04="number04" :middlePrice04="middlePrice04" @isoff="of"></Perches>
 			</div>
 		</transition>
 	</div>
@@ -51,23 +51,29 @@ export default {
   components: { Perches },
 	data() {
 		return {
+			noPay: true,
 			number:"4",
 			number01: 0,
 			number02: 0,
 			number03: 0,
 			number04: 0,
 			price: "0",
+			middlePrice01:"0",
+			middlePrice02:"0",
+			middlePrice03:"0",
+			middlePrice04:"0",
 			isUp: "down"
 		}
 	},
 	methods: {
 		a() {
-			let number01 = this.number01
-			let number02 = this.number02
-			let number03 = this.number03
-			let number04 = this.number04
-			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
+			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
+			this.middlePrice01 = (this.number01 * 500)
+			this.middlePrice02 = (this.number02 * 300)
+			this.middlePrice03 = (this.number03 * 3500) 
+			this.middlePrice04 = (this.number04 * 2000)
 			this.price = result
+			this.noPay = false
 		},
 		b() {
 			let number01 = this.number01
@@ -75,23 +81,21 @@ export default {
 			let number03 = this.number03
 			let number04 = this.number04
 			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
+			this.middlePrice02 = (this.number02 * 300)
 			this.price = result
+			this.noPay = false
 		},
 		c() {
-			let number01 = this.number01
-			let number02 = this.number02
-			let number03 = this.number03
-			let number04 = this.number04
-			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
+			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
+			this.middlePrice03 = (this.number03 * 3500)
 			this.price = result
+			this.noPay = false
 		},
 		d() {
-			let number01 = this.number01
-			let number02 = this.number02
-			let number03 = this.number03
-			let number04 = this.number04
-			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
+			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
+			this.middlePrice04 = (this.number04 * 2000)
 			this.price = result
+			this.noPay = false
 		},
 		perches() {
 			this.isUp = 'up'
@@ -112,9 +116,13 @@ h1 {
 	font-size: 2rem;
 	color: $main-color;
 }
+h3 {
+	font-weight: lighter; 
+}
 h4 {
 	display: inline-block;
 	margin-right: 5px;
+	font-size: 1rem;
 }
 p {
 	margin: 5px;
@@ -131,11 +139,12 @@ input {
 	width: 50px;
 	text-align: end;
 	margin: 5px;
+	border: 1px solid$main-color;
 }
 button {
 	padding: 5px;
-	width: 20%;
-	margin: 0 40%;
+	width: 30%;
+	margin: 5px 35%;
 	color: white;
 	background: orange;
 	border: 1px solid $main-color;
@@ -159,7 +168,7 @@ button {
 	width: 25%;
 	text-align: center;
 	font-size: 2rem;
-	border-top: 1px solid rgba(107, 103, 103, 0.904);
+	border-top: 1px solid $main-color;
 	border-bottom: 1px solid $main-color;
 	border-radius: 20px;
 }
@@ -182,9 +191,10 @@ button {
 	}
 .totall {
 	display: inline-block;
+
 	text-align: center;
 	width: 60%;
-	margin: 10px 20%;
+	margin: 2% 20%;
 
 }
 #off {
@@ -195,5 +205,8 @@ button {
 	bottom: 0;
 	border-top: 1px dotted $main-color;
 	text-align: center;
+}
+.totall-box {
+	
 }
 </style>

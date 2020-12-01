@@ -8,14 +8,42 @@
 		<div id="perches-body" :class="{perchesBody:isOn}">
 			<div class="perches-menu">
 				<button @click="on()" class="offButton">✖︎</button>
-				<div>
-					<h2>購入ページ</h2>
-						<div class="totall">
-							<h3>購入内容</h3>
-							<div class="state">個別傷なし{{number01}}個、傷あり{{number02}}個、傷なし{{number03}}ケース、傷あり{{number04}}ケース</div>
-							<p v-if="isPay==='1'" class="totall-price">総計{{price}}円</p><p v-else class="totall-price">総計{{addPrice}}円<br>(300円追加されました)</p>
+				<h1>ご購入内容</h1>
+				<div class="totall">
+					<div class="totall-left">
+						<div v-if="number01 >=1" class="totall-box">
+							<img src="@/assets/kaki.png" alt="">
+							<div class="box-price">
+								傷なし{{number01}}点<br>
+								小計{{middlePrice01}}円
+							</div>
 						</div>
-					<p>選択が正しければご確認の上以下の空欄を記述していただいて購入ボタンを押してください</p>
+						<div v-if="number02 >=1" class="totall-box">
+							<img src="@/assets/kaki.png" alt="">
+							<div class="box-price">
+								傷なし{{number02}}点<br>
+								小計{{middlePrice02}}円
+							</div>
+						</div>
+						<div v-if="number03 >=1" class="totall-box">
+							<img src="@/assets/kaki.png" alt="">
+							<div class="box-price">
+								傷なし{{number03}}点<br>
+								小計{{middlePrice03}}円
+							</div>
+						</div>
+						<div v-if="number04 >=1" class="totall-box">
+							<img src="@/assets/kaki.png" alt="">
+							<div class="box-price">
+								傷なし{{number04}}点<br>
+								小計{{middlePrice04}}円
+							</div>
+						</div>
+					</div>
+					<div class="totall-right">
+						<div v-if="isPay==='1'" class="totall-price">総計{{price}}円</div><div v-else class="totall-price">総計{{addPrice}}円<br><div class="addPrice">(300円追加されました)</div></div>
+						<div class="shipping">内(送料   500円  手数料 {{myTax}}円)</div>
+					</div>
 				</div>
 				<div class="pay">
 					<div class="pay-name">
@@ -68,6 +96,7 @@
  export default {
 	data(){
 		return {
+			myTax: '0',
 			currentcomponent:"",
 			noPay:true,
 			noMail:true,
@@ -109,17 +138,34 @@
 			type: Number,
 			default: 0
 		},
+		middlePrice01: {
+			type: Number,
+			default: 0
+		},
 		number02: {
 			type: Number,
 			default: 0
-		},number03: {
+		},
+		middlePrice02: {
+			type: Number,
+			default: 0
+		},
+		number03: {
+			type: Number,
+			default: 0
+		},
+		middlePrice03: {
 			type: Number,
 			default: 0
 		},
 		number04: {
 			type: Number,
 			default: 0
-		}
+		},
+		middlePrice04: {
+			type: Number,
+			default: 0
+		},
 	},
 	methods: {
 		check() {
@@ -190,11 +236,13 @@
 			}
 		},
 		payCheck() {
+			this.myTax = '0'
 			if (this.pay === 'クレジットカード(手数料0円)' ) {
 				this.isPay = '1'
 				this.addPrice = this.price
 				this.checked = false
 			}else {
+				this.myTax = '300'
 				this.isPay = '2'
 				if (this.addPrice === this.price) {
 					this.addPrice = this.price +300
@@ -245,6 +293,10 @@ $main-color: rgb(231, 163, 85);
 	.noa {
 		color: rgba(0, 0, 0, 0.404);
 	}
+	h1 {
+		text-align: center;
+		padding-bottom: 1%;
+	}
   h2 {
 	text-align: center;
 	font-weight: bold;
@@ -256,11 +308,14 @@ $main-color: rgb(231, 163, 85);
   }
   h3 {
 		margin: 5px;
+		display: inline-block;
   }
-  p {
-	text-align: center;
-	margin: 5px;
-  }
+	img {
+		display: block;
+	width: 90%;
+	padding: 5%;
+	height: 50px;
+}
   input {
 	display: inline-block;
 	width: 50%;
@@ -277,10 +332,12 @@ $main-color: rgb(231, 163, 85);
    display:inline-block;
    width:1px;
    height:100%;
-   background-color:orange;
    position:absolute;
    top:0;
    right:80%;
+	}
+	button {
+		display: inline-block;
 	}
 	
   #perches-body {
@@ -315,16 +372,64 @@ $main-color: rgb(231, 163, 85);
 		background: rgb(236, 233, 227);
 	}
 	.totall {
-		text-align: center;
-		background: $main-color;
-		width: 90%;
-		padding: 5%;
+		border-top: 2px solid $main-color;
+		border-bottom: 2px solid $main-color;
+		display: flex;
+		justify-content: space-between;
+		width: 80%;
+		margin-left: 10%;
+	}
+	.totall-right {
+		display: inline-block;
+		background: rgba(128, 128, 128, 0.123);
+		margin-right: 5%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		border-radius: 5px;
+		padding: 0 2%;
+	}
+	.totall-left {
+		display: flex;
+		display: inline-block;
+		margin-left: 5%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		width: 40%;
 	}
 	.totall-price {
-		margin: 10px;
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+		padding-top: 20%;
+		font-size: 1.5rem;
+		color: red;
+	}
+	.totall-box {
+		display: inline-block;
+		margin: 0 1px;
+		width: 30%;
+		box-shadow: 0 0 5px 1px rgb(160, 152, 152);
+	}
+	.box-price {
+		padding: 5px;
+	}
+	.shipping {
+		display: block;
+		padding-top: 5%;
+		text-align: center;
+		color: rgba(128, 128, 128, 0.644);
+	}
+	.myTax {
+		display: inline-block;
+		color: rgba(128, 128, 128, 0.644);
+	}
+	.addPrice {
+		font-size: 1rem;
 	}
 	.state {
-		margin: 5px;
+		display: flex;
+		margin: 2px;
+		justify-content: center;
 	}
 	.pay {
 		position: absolute;
@@ -531,5 +636,20 @@ $main-color: rgb(231, 163, 85);
 		color: orange;
 		border: 2px solid orange;
 		border-radius: 3px;
+	}
+	.box {
+	text-align: center;
+	padding: 10px;
+	margin: 5px;
+	border: 3px solid $main-color;
+	border-radius: 8px;
+	box-shadow: 0 0 5px 1px rgb(160, 152, 152);
+	}
+	.box-price {
+		text-align: center;
+		width: 90%;
+		margin: 5px;
+		padding: 5px;
+		border-top: 1px dotted $main-color;
 	}
 </style>

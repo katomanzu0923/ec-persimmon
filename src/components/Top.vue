@@ -9,6 +9,10 @@
 					</transition>
 					<transition name="fade">
 						<div v-if="isSeason == '3'" class="page"><img src="@/assets/kaki.png" alt="a" id="kaki"></div>
+						<div class="right">
+				<p class="right-text">秋の魅力をあなたのもとへ</p>
+				<p class="right-text02">今が食べ頃です</p>
+			</div>
 					</transition>
 					<transition name="fade">
 						<div v-if="isSeason == '4'"><img src="@/assets/top_jp_bac.png" alt="a"></div>
@@ -157,7 +161,7 @@ export default {
 		position: absolute;
 		right: 0%;
 		width: 30%;
-		height: 100%;
+		height: 80%;
     writing-mode: vertical-rl;
 		font-size: 2rem;
 		color: rgb(233, 155, 67);
@@ -165,10 +169,14 @@ export default {
 	.right-text {
 		position: absolute;
 		left: 0;
+		height: 100%;
+		top: 0%;
 		margin: 20%;
 	}
 	.right-text02 {
-		padding-top: 30%;
+		position: absolute;
+		right: 0;
+		bottom: 0;
 		margin: 20%;
 	}
 </style>
