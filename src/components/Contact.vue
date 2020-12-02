@@ -41,7 +41,7 @@ export default {
 			nameResult: "",
 			mail: "",
 			change01: false,
-			mailResult: "メールアドレスは必ず@を含んでください",
+			mailResult: "",
 			mailChecking: true,
 			change02: false,
 			content: "",
@@ -72,7 +72,7 @@ export default {
 			if (this.content === "") {
 				this.contentResult = "必ずご要望は記述してください",this.change03 = false,this.sendChecking = true
 			}else{
-				this.contentResult = "大丈夫です",this.change03 = !this.change03,this.sendChecking = false
+				this.contentResult = "大丈夫です",this.change03 = true,this.sendChecking = false
 			}
 		},
 		out() {
@@ -101,13 +101,14 @@ label {
 	display: block;
 	text-align: start;
 	padding-bottom: 5px;
+	color:$main-color;
 }
 button {
   text-decoration: none;
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: solid 1px rgb(0, 0, 0);
+  border: solid 1px $main-color;
   text-align: center;
   overflow: hidden;
   font-weight: bold;
@@ -119,11 +120,16 @@ textarea {
 	width: 60%;
 	margin-bottom: 2%;
 	outline: none;
+	border:1px solid white;
+	box-shadow: 0 0 1px 1px rgba(214, 108, 8, 0.527);
 }
 
 input {
 	display: block;
 	outline: none;
+	background-color: white;
+	border:1px solid white;
+	box-shadow: 0 0 1px 1px rgba(214, 108, 8, 0.527);
 }
 h1 {
 	margin: 5px;
@@ -151,6 +157,7 @@ h1 {
 	color: orange;
 }
 .contact {
+
 }
 .contact-lien {
 	width: 60%;
@@ -205,7 +212,7 @@ h1 {
   height: 15px;
   display: inline-block;
   border-radius: 50%;
-	border: 1px solid black;
+	border: 1px solid $main-color;
 	line-height: 30px;
 	margin: 10px;
 }
@@ -228,6 +235,7 @@ h1 {
 	margin: 10px;
 }
 .contact-area {
+	
 	border: 1px solid rgb(255, 174, 0);
 
 	width:60%;
@@ -238,6 +246,7 @@ h1 {
 }
 .cotact-send {
 	border: 1px solid $main-color;
+	border-radius: 1px;
 	border-top: none;
 	text-align: center;
 	width: 60%;

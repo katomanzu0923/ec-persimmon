@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="b"> 
-			<h3>歴史と富有柿</h3>
+			<h1>歴史と富有柿</h1>
 			<div class="about-content">
 				<div class="content-image-b">
 					<img src="@/assets/kakihistory.png" alt="">
@@ -95,7 +95,7 @@ img {
 	margin-bottom: 5%;
 }
 .a {
-	background: rgba(230, 132, 21, 0.562);
+	background: $main-color;
 	position: relative;
 	width: 70%;
 	text-align: start;
@@ -107,7 +107,7 @@ img {
 	margin-left: 30%;
 }
 .c {
-	background: rgba(233, 156, 67, 0.562);
+	background: $main-color;
 	position: relative;
 	width: 70%;
 
