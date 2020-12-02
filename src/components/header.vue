@@ -24,9 +24,8 @@
 			</div>
 		</div>
 		
-		<keep-alive>
+
 			<component :is="currentComponet" class="contents">f</component>
-		</keep-alive>
 	</div>
 </template>
 

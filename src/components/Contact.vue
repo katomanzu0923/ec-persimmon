@@ -1,7 +1,9 @@
 <template>
 	<div class="contact-body">
+		<div class="contact-title">
+			<h1>お問いわせ先</h1>
+		</div>
 		<div class="contact">
-			<div class="contact-title">お問い合わせ</div>
 			<div id="circle" :class="{up:change01}">1</div><div id="circle" :class="{up:change02}">2</div><div id="circle" :class="{up:change03}">3</div>
 			<div class="contact-area">
 					<label for="name">お名前</label>
@@ -62,6 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$main-color: rgb(231, 163, 85);
 label {
 	display: block;
 }
@@ -85,6 +88,13 @@ button:hover {
 }
 input, textarea {
 	outline: none;
+}
+h1 {
+	margin: 5px;
+	padding: 1px;
+	text-align: center;
+	font-size: 2rem;
+	color: $main-color;
 }
 .contact-body {
 	display: block;
@@ -135,5 +145,14 @@ input, textarea {
 .up {
 	background: rgb(233, 155, 67);
 	color: green;
+}
+.contact-title {
+	margin: 1% auto;
+	width: 25%;
+	text-align: center;
+	font-size: 2rem;
+	border-top: 1px solid $main-color;
+	border-bottom: 1px solid $main-color;
+	border-radius: 20px;
 }
 </style>
