@@ -109,12 +109,28 @@ export default {
 
 <style lang="scss" scoped>
 $main-color: rgb(231, 163, 85);
+$breakpoints: (
+	m: "only screen and (max-width: 980px)",
+	pc: "only screen and (max-width: 1199px)",
+);
+@mixin media($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+.buy-body {
+	position: absolute;
+	top: 10%;
+}
 h1 {
 	margin: 5px;
 	padding: 1px;
 	text-align: center;
 	font-size: 2rem;
 	color: $main-color;
+	@include media(m) {
+		font-size:1.5rem;
+	}
 }
 h3 {
 	font-weight: lighter; 
@@ -131,9 +147,17 @@ img {
 	width: 200px;
 	height: 150px;
 	margin: 5px;
+	@include media(m){
+		margin: 2.5%;
+		width: 95%;
+		height: 40%;
+	}
 }
 label{
 	margin: 5px;
+	@include media(m) {
+		margin: unset;
+	}
 }
 input {
 	width: 50px;
@@ -149,10 +173,10 @@ button {
 	background: orange;
 	border: 1px solid $main-color;
 	filter: drop-shadow(0 0 0.75rem rgb(221, 99, 17));
-
-}
-.image {
-	width: 100%;
+	@include media(m){
+		width: 80%;
+		margin: 2% 10%;
+	}
 }
 .fade-enter-active {
   transition: all 0.25s ease;
@@ -171,31 +195,45 @@ button {
 	border-top: 1px solid $main-color;
 	border-bottom: 1px solid $main-color;
 	border-radius: 20px;
+	@include media(m){
+		width: 50%;
+		font-size:1.5rem;
+	}
 }
 .buy-area {
 	display: flex;
 	justify-content: space-evenly;
+	@include media(m){
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
 }
 .buy-titles {
 	text-align: center;
 	padding: 5px;
 	font-size: 1rem;
 	margin: 1px;
+	@include media(m) {}
 }
 .box {
 	position: relative;
 	margin: 40px;
 	border: 3px solid $main-color;
 	border-radius: 8px;
-	
+	@include media(m){
+		width: 40%;
+		margin: 5px;
+	}
 	}
 .totall {
 	display: inline-block;
-
 	text-align: center;
 	width: 60%;
 	margin: 2% 20%;
-
+	@include media(m){
+		width: 80%;
+		margin: 2% 10%;
+	}
 }
 #off {
 	display: none;
@@ -205,8 +243,5 @@ button {
 	bottom: 0;
 	border-top: 1px dotted $main-color;
 	text-align: center;
-}
-.totall-box {
-	
 }
 </style>

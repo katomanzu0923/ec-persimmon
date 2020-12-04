@@ -49,7 +49,7 @@ export default {
 			change03: false,
 			textChecking: true,
 			sendChecking: true,
-			isOut:false
+			isOut:true
 		}
 
 	},
@@ -97,6 +97,15 @@ export default {
 
 <style lang="scss" scoped>
 $main-color: rgb(231, 163, 85);
+$breakpoints: (
+	m: "only screen and (max-width: 980px)",
+	pc: "only screen and (max-width: 1199px)",
+);
+@mixin media($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
 label {
 	display: block;
 	text-align: start;
@@ -130,6 +139,9 @@ input {
 	background-color: white;
 	border:1px solid white;
 	box-shadow: 0 0 1px 1px rgba(214, 108, 8, 0.527);
+	@include media(m){
+		width: 50%;
+	}
 }
 h1 {
 	margin: 5px;
@@ -137,9 +149,18 @@ h1 {
 	text-align: center;
 	font-size: 2rem;
 	color: $main-color;
+	@include media(m){
+		margin: unset;
+		font-size: 1.5rem;
+	}
 }
 .contact-body {
 	display: block;
+	@include media(m){
+		position: absolute;
+		top: 10%;
+		width: 100%;
+	}
 }
 .out {
 	position: absolute;
@@ -155,6 +176,13 @@ h1 {
 	align-items: center;
 	font-size: 2rem;
 	color: orange;
+	@include media(m){
+		width: 70%;
+		margin: 0 15%;
+		height: 95%;
+		top: 8%;
+		font-size: 1.5rem;
+	}
 }
 .contact {
 
@@ -165,6 +193,10 @@ h1 {
 	border: 1px solid $main-color;
 	border-bottom: none;
 	text-align: center;
+	@include media(m){
+		width: 70%;
+		margin: 0 15%;
+	}
 }
 .contact-private {
 	display: flex;
@@ -174,6 +206,10 @@ h1 {
 	border-top: 1px dotted $main-color;
 	width: 60%;
 	margin: 0 20%;
+	@include media(m){
+		width: 70%;
+		margin: 0 15%;
+	}
 }
 .contact-name {
 	padding: 2%;
@@ -200,6 +236,10 @@ h1 {
 	border: 1px solid $main-color;
 	border-top: none;
 	border-bottom: none;
+	@include media(m){
+		width: 70%;
+		margin: 0 15%;
+	}
 }
 .label-message {
 	width: 60%;
@@ -252,6 +292,10 @@ h1 {
 	width: 60%;
 	margin: 0 20%;
 	padding: 5px 0;
+	@include media(m){
+		width: 70%;
+		margin: 0 15%;
+	}
 }
 .result {
 	margin: 10px;
@@ -268,6 +312,11 @@ h1 {
 	border-top: 1px solid $main-color;
 	border-bottom: 1px solid $main-color;
 	border-radius: 20px;
+	@include media(m){
+		width: 70%;
+		margin: 1% 15%;
+		font-size: 1.5rem;
+	}
 }
 #f {
 	color: none;
