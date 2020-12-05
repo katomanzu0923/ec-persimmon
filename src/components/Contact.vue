@@ -8,7 +8,7 @@
 		</div>
 		<div class="contact">
 			<div class="contact-lien">
-				<div id="inline" :class="{up:change01}">1.お名前を入力してください</div><div id="inline" :class="{up:change02}">2.メールアドレスを入力してください</div><div id="inline" :class="{up:change03}">3.お問い合わせ内容を入力してください</div>
+				<div id="inline" :class="{up:change01}">{{contactName}}</div><div id="inline" :class="{up:change02}">{{contactMail}}</div><div id="inline" :class="{up:change03}">{{contactText}}</div>
 			</div>
 			<div class="contact-private">
 				<div class="contact-name">
@@ -49,7 +49,10 @@ export default {
 			change03: false,
 			textChecking: true,
 			sendChecking: true,
-			isOut:false
+			isOut:false,
+			contactName:"1.お名前入力ください",
+			contactMail:"2.メールアドレスを入力してください",
+			contactText:"3.お問い合わせ内容を入力してください"
 		}
 
 	},
@@ -58,21 +61,21 @@ export default {
 			if (this.name === "") {
 				this.nameResult = "名前は必ず入力してください",this.change01 = false,this.mailChecking = true
 			}else{
-				this.change01 = true,this.mailChecking = false,this.nameResult = ""
+				this.change01 = true,this.mailChecking = false,this.nameResult = "",this.contactName = 'メールアドレスを入力しましょう！'
 			}
 		},
 		mailCheck() {
 			if (this.mail === "" || !this.mail.match(/^([a-zA-Z0-9])+([a-zA-Z0-9_-])*@([a-zA-Z0-9_-])+$/)) {
 				this.mailResult = "＠は必ず含んでください",this.change02 = false,this.textChecking = true
 			}else{
-				this.change02 = true,this.textChecking = false,this.mailResult = ""
+				this.change02 = true,this.textChecking = false,this.mailResult = "",this.contactMail = 'お問い合わせ事項を入力しましょう！'
 			}
 		},
 		contentCheck() {
 			if (this.content === "") {
 				this.contentResult = "必ずご要望は記述してください",this.change03 = false,this.sendChecking = true
 			}else{
-				this.contentResult = "大丈夫です",this.change03 = true,this.sendChecking = false
+				this.contentResult = "大丈夫です",this.change03 = true,this.sendChecking = false,this.contactText = '内容を確認して送信ボタンを押しましょう！'
 			}
 		},
 		out() {
@@ -89,7 +92,10 @@ export default {
 			this.change03 = false,
 			this.mailChecking = true,
 			this.textChecking = true,
-			this.sendChecking = true
+			this.sendChecking = true,
+			this.contactName = "1.お名前入力ください",
+			this.contactMail = "2.メールアドレスを入力してください",
+			this.contactText = "3.お問い合わせ内容を入力してください"
 		}
 	}
 }
@@ -195,6 +201,7 @@ h1 {
 }
 .contact-lien {
 	display: flex;
+	color: $main-color;
 	width: 60%;
 	margin: 0 20%;
 	border: 1px solid $main-color;

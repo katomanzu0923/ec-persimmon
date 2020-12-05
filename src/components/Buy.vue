@@ -39,7 +39,7 @@
 		</div>
 		<transition name="fade">
 			<div class="perches-body" v-if="isUp == 'up'">
-				<Perches :price="price" :number01="number01" :middlePrice01="middlePrice01" :number02="number02" :middlePrice02="middlePrice02" :nubmer03="number03" :middlePrice03="middlePrice03" :number04="number04" :middlePrice04="middlePrice04" @isoff="of"></Perches>
+				<Perches :price="price" :number01="number01" :middlePrice01="middlePrice01" :number02="number02" :middlePrice02="middlePrice02" :number03="number03" :middlePrice03="middlePrice03" :number04="number04" :middlePrice04="middlePrice04" @isoff="of"></Perches>
 			</div>
 		</transition>
 	</div>

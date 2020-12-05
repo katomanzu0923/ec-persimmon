@@ -96,7 +96,7 @@ h3 {
 	}
 }
 p {
-	font-size: 0.5rem;
+	font-size: 1rem;
 }
 img {
 	width: 450px;

@@ -5,38 +5,38 @@
 				<img src="@/assets/fuyukaki.png" alt="" class="logo">
 			</div>
 			<div class="header-menu">
-				<button @click="currentComponet = 'top';  change_top()" class="top">
+				<button @click="currentComponet = 'top';  change_top()" id="top">
 					{{top_menu}}
 					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
 				</button>
-				<button @click="currentComponet = 'about'; change_about()" class="about">
+				<button @click="currentComponet = 'about'; change_about()" id="about">
 					{{about_menu}}
 					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
 				</button>
-				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
+				<button @click="currentComponet = 'buy'; change_buy()" id="buy">
 					{{buy_menu}}
 					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
 				</button>
-				<button @click="currentComponet = 'contact';  change_contact()" class="contact">
+				<button @click="currentComponet = 'contact';  change_contact()" id="contact">
 					{{contact_menu}}
 					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
 				</button>
 			</div>
 		</div>
 		<div class="footer-menu-mobile">
-				<button @click="currentComponet = 'top';  change_top()" class="top">
+				<button @click="currentComponet = 'top';  change_top()" :class="[topOn === true? 'topChange': 'top']">
 					{{top_menu}}
 					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
 				</button>
-				<button @click="currentComponet = 'about'; change_about()" class="about">
+				<button @click="currentComponet = 'about'; change_about()" :class="[aboutOn === true? 'aboutChange': 'about']">
 					{{about_menu}}
 					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
 				</button>
-				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
+				<button @click="currentComponet = 'buy'; change_buy()" :class="[buyOn === true? 'buyChange': 'buy']">
 					{{buy_menu}}
 					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
 				</button>
-				<button @click="currentComponet = 'contact';  change_contact()" class="contact">
+				<button @click="currentComponet = 'contact';  change_contact()" :class="[contactOn === true? 'contactChange': 'contact']">
 					{{contact_menu}}
 					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
 				</button>
@@ -59,7 +59,11 @@ export default {
 			isActiveTop: "off",
 			isActiveBuy: "off",
 			isActiveAbout: "off",
-			isActiveContact: "off"
+			isActiveContact: "off",
+			topOn:true,
+			buyOn:false,
+			contactOn:false,
+			aboutOn:false,
 		}
 	},
 	props: {
@@ -70,7 +74,7 @@ export default {
 	},
 	methods: {
 		change_top() {
-			this.top_menu = "選択中",
+			this.top_menu = "Top",
 			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
 			this.contact_menu = "お問い合わせ"
@@ -78,6 +82,10 @@ export default {
 			this.isActiveBuy = "off"
 			this.isActiveAbout = "off"
 			this.isActiveContact = "off"
+			this.topOn = true
+			this.buyOn = false
+			this.contactOn = false
+			this.aboutOn = false
 		},
 		change_buy()  {
 			this.top_menu = "Top",
@@ -88,26 +96,38 @@ export default {
 			this.isActiveBuy = "on",
 			this.isActiveAbout = "off"
 			this.isActiveContact = "off"
+			this.topOn = false
+			this.buyOn = true
+			this.contactOn = false
+			this.aboutOn = false
 		},
 		change_about()  {
 			this.top_menu = "Top",
 			this.buy_menu = "商品一覧",
-			this.about_menu = "選択中",
+			this.about_menu = "富有柿について",
 			this.contact_menu = "お問い合わせ"
 			this.isActiveTop = "off",
 			this.isActiveBuy = "off",
 			this.isActiveAbout = "on"
 			this.isActiveContact = "off"
+			this.topOn = false
+			this.buyOn = false
+			this.contactOn = false
+			this.aboutOn = true
 		},
 		change_contact()  {
 			this.top_menu = "Top",
 			this.buy_menu = "商品一覧",
 			this.about_menu = "富有柿について",
-			this.contact_menu = "選択中"
+			this.contact_menu = "お問い合わせ",
 			this.isActiveTop = "off",
 			this.isActiveBuy = "off",
 			this.isActiveAbout = "off"
 			this.isActiveContact = "on"
+			this.topOn = false
+			this.buyOn = false
+			this.contactOn = true
+			this.aboutOn = false
 		}
 	}
 }
@@ -218,13 +238,26 @@ $breakpoints: (
 		border-right: 1px solid $main-color;
 		position: relative;
 		color:$main-color;
-		padding-bottom: 10px;
+		padding-bottom: 40px;
 		@include media(m) {
 			padding: unset;
 			border-left:unset;
 		}
 		
 	}
+	.topChange {
+		color: green;
+		border-left: 1px solid $main-color;
+		border-right: 1px solid $main-color;
+		position: relative;
+		padding-bottom: 40px;
+		@include media(m) {
+			padding: unset;
+			border-left:unset;
+		}
+	}
+	
+	
 	.underDwon::before {
 		filter: opacity(0);
 	}
@@ -249,6 +282,16 @@ $breakpoints: (
 			padding: unset;
 		}
 	}
+	.buyChange {
+		border-left: 1px solid $main-color;
+		border-right: 1px solid $main-color;
+		position: relative;
+		color:green;
+		padding-bottom: 40px;
+		@include media(m) {
+			padding: unset;
+		}
+	}
 	.underBuy::before { 
 	content:"";
    display:block;
@@ -267,6 +310,14 @@ $breakpoints: (
 			padding: unset;
 		}
 	}
+	.aboutChange {
+		position: relative;
+		color:green;
+		padding-bottom: 40px;
+		@include media(m) {
+			padding: unset;
+		}
+	}
 	.underAbout::before { 
 	content:"";
    display:block;
@@ -278,12 +329,18 @@ $breakpoints: (
    left:10%;filter: opacity(100%);@include media(m) {display: none;}
 	}
 	.contact {
-	
 		position: relative;
 		color:$main-color;
 		padding-bottom: 40px;
 		@include media(m) {
-			
+			padding: unset;
+		}
+	}
+	.contactChange {
+		position: relative;
+		color:green;
+		padding-bottom: 40px;
+		@include media(m) {
 			padding: unset;
 		}
 	}
