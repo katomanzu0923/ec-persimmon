@@ -8,7 +8,7 @@
 		</div>
 		<div class="contact">
 			<div class="contact-lien">
-				<div id="circle" :class="{up:change01}"></div><div id="circle" :class="{up:change02}"></div><div id="circle" :class="{up:change03}"></div>
+				<div id="inline" :class="{up:change01}">1.お名前を入力してください</div><div id="inline" :class="{up:change02}">2.メールアドレスを入力してください</div><div id="inline" :class="{up:change03}">3.お問い合わせ内容を入力してください</div>
 			</div>
 			<div class="contact-private">
 				<div class="contact-name">
@@ -49,7 +49,7 @@ export default {
 			change03: false,
 			textChecking: true,
 			sendChecking: true,
-			isOut:true
+			isOut:false
 		}
 
 	},
@@ -162,6 +162,12 @@ h1 {
 		width: 100%;
 	}
 }
+#inline {
+	display: inline-block;
+	border: 1px solid orange;
+	width: 100%;
+	padding: 1%;
+}
 .out {
 	position: absolute;
 	width: 61%;
@@ -188,6 +194,7 @@ h1 {
 
 }
 .contact-lien {
+	display: flex;
 	width: 60%;
 	margin: 0 20%;
 	border: 1px solid $main-color;

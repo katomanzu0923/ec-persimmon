@@ -204,11 +204,13 @@ $breakpoints: (
 		align-content: space-around;
 		justify-content: center;
 			bottom: 0;
+			left: 0;
 			display: block;
 			padding-top: 1%;
 			width: 100%;
 			color:$main-color;
 			border-top: 1px solid rgb(233, 153, 4);
+			z-index: 4;
 		}
 	}
 	.top	{

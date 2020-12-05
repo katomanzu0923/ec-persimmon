@@ -1,7 +1,7 @@
 <template>
   <div>
 		<transition name="fade">
-			<div  v-show="isPay === 'up'" class="o">
+			<div  v-show="isOver === 'up'" class="o">
 				ご購入ありがとうございます。またの御来店おまちしております
 			</div>
 		</transition>
@@ -78,11 +78,13 @@
                 {{ option.name }}
               </option>
 						</select>
-						<input class="pay-payed" v-if="isPay==='1'" type="text" name="カード番号をご記入ください" id="" placeholder="カード番号" v-model="payed"  :disabled="noPay" v-on="buyCheck()">
-						<input class="pay-card-limit" v-if="isPay==='1'" type="text"  id="" placeholder="有効期限 1/1" v-model="limit" :disabled="noPay" v-on="buyCheck()">
+						<div class="flex">
+							<input class="pay-payed" v-if="isPay==='1'" type="text" name="カード番号をご記入ください" id="" placeholder="カード番号" v-model="payed"  :disabled="noPay" v-on="buyCheck()">
+						<input class="pay-card-limit" v-if="isPay==='1'" type="text"  id="" placeholder="期限 1/1" v-model="limit" :disabled="noPay" v-on="buyCheck()">
 						<input class="pay-card-number" v-if="isPay==='1'" type="text" name="カード番号をご記入ください" id="" placeholder="セキュリティコード 123" v-model="number" :disabled="noPay" v-on="buyCheck()">
 						<input class="pay-card-name" v-if="isPay==='1'" type="text" name="カード番号をご記入ください" id="" placeholder="名前 taro" v-model="cardName" :disabled="noPay" v-on="buyCheck()">
 						<div class="payed" v-else>手数料300円加算されましたがよろしいでしょうか<input type="checkbox" class="pa" v-model="checked" v-on="buyCheck()"></div>
+						</div>
 					</div>
 				</div>
 
@@ -96,6 +98,7 @@
  export default {
 	data(){
 		return {
+			isOver:'down',
 			myTax: '0',
 			currentcomponent:"",
 			noPay:true,
@@ -261,7 +264,8 @@
 			}
 		},
 		all() {
-			this.isPay = 'up'
+			this.isOver = 'up'
+			
 			setTimeout(this.auto, 3000,);
 		},
 		auto() {
@@ -275,6 +279,15 @@
 
 <style lang="scss" scoped>
 $main-color: rgb(231, 163, 85);
+$breakpoints: (
+	m: "only screen and (max-width: 980px)",
+	pc: "only screen and (max-width: 1199px)",
+);
+@mixin media($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
   .fade-enter-active {
   transition: all 1s ease;
 }
@@ -289,6 +302,11 @@ $main-color: rgb(231, 163, 85);
 		display: inline-block;
 		left: 65%;
 		top: 30%;
+		@include media(m){
+			position: unset;
+			display: block;
+			margin: 1% auto;
+		}
 	}
 	.noa {
 		color: rgba(0, 0, 0, 0.404);
@@ -344,20 +362,22 @@ $main-color: rgb(231, 163, 85);
 	position: absolute;
 		z-index: 1;
 		width: 100%;
-		height: 100%;
-		top: 0;
+		height: 115%;
+		top: -15%;
 		left: 0;
-		z-index: 2;
-		border: 1px solid green;
+		z-index:32;
 		backdrop-filter: brightness(40%);
-  }
+  }@include media(m) {
+		height: 100%;
+		width: 100vw;
+	}
   .perchesBody {
 		display: none;
 		position: absolute;
-		width: 60%;
-		height: 90%;
-		top: 10%;
-		left: 10%;
+		width:100%;
+		height: 100%;
+		top: 0;
+		left: 0%;
 		z-index: 2;
 		background: green;
 	}
@@ -368,16 +388,25 @@ $main-color: rgb(231, 163, 85);
 		top: 5%;
 		left: 20%;
 		background: #fff;
-		z-index: 2;
+		z-index: 3;
 		background: rgb(236, 233, 227);
+		@include media(m){
+		flex-direction: column;
+		width: 90%;
+		left: 5%;
+	}
 	}
 	.totall {
 		border-top: 2px solid $main-color;
 		border-bottom: 2px solid $main-color;
 		display: flex;
+		background: wheat;
 		justify-content: space-between;
 		width: 80%;
 		margin-left: 10%;
+		@include media(m){
+			flex-direction: column;
+		}
 	}
 	.totall-right {
 		display: inline-block;
@@ -395,12 +424,17 @@ $main-color: rgb(231, 163, 85);
 		margin-top: 5%;
 		margin-bottom: 5%;
 		width: 40%;
+		@include media(m){
+			width: 80%;
+		}
 	}
 	.totall-price {
 		display: inline-block;
 		text-align: center;
+		display: grid;
+  place-items: center;
 		width: 100%;
-		padding-top: 20%;
+		padding-top: 5%;
 		font-size: 1.5rem;
 		color: red;
 	}
@@ -415,7 +449,7 @@ $main-color: rgb(231, 163, 85);
 	}
 	.shipping {
 		display: block;
-		padding-top: 5%;
+		padding: 5% 0;
 		text-align: center;
 		color: rgba(128, 128, 128, 0.644);
 	}
@@ -438,12 +472,20 @@ $main-color: rgb(231, 163, 85);
 		bottom: 10%;
 		display: flex;
 		flex-direction: column;
+		@include media(m){
+			position: absolute;
+			bottom: 5%;
+			margin: 1% auto; 
+		}
 	}
 	.pay-name {
 		border: 1px solid orange;
 		border-bottom: 1px dotted orange;
 		padding: 1%;
 		position: relative;
+		@include media(m){
+			padding: 5% 0; 
+		}
 	}
 	.input-name-red {
 		color: red;
@@ -464,6 +506,9 @@ $main-color: rgb(231, 163, 85);
 		border-bottom: 1px dotted orange;
 		padding: 1%;
 		position: relative;
+		@include media(m){
+			padding: 5% 0; 
+		}
 	}
 	.input-post-red {
 		color: red;
@@ -484,6 +529,9 @@ $main-color: rgb(231, 163, 85);
 		border-bottom: 1px dotted orange;
 		padding: 1%;
 		position: relative;
+		@include media(m){
+			padding: 5% 0; 
+		}
 	}
 	.input-house-red {
 		color: red;
@@ -504,6 +552,9 @@ $main-color: rgb(231, 163, 85);
 		border-bottom: 1px dotted orange;
 		padding: 1%;
 		position: relative;
+		@include media(m){
+			padding: 5% 0; 
+		}
 	}
 	.input-phone-red {
 		color: red;
@@ -524,6 +575,9 @@ $main-color: rgb(231, 163, 85);
 		border-bottom: 1px dotted orange;
 		padding: 1%;
 		position: relative;
+		@include media(m){
+			padding: 5% 0; 
+		}
 	}
 	.input-mail-red {
 		color: red;
@@ -542,6 +596,11 @@ $main-color: rgb(231, 163, 85);
 		position: relative;
 		border-left: 1px solid orange;
 		border-bottom: 1px solid orange;
+		border-right: 1px solid orange;
+		@include media(m){
+			padding: 5% 0; 
+			text-align: center;
+		}
 	}
 	.pay-payed {
 		display: inline-block;
@@ -553,11 +612,18 @@ $main-color: rgb(231, 163, 85);
 		color: red;
 		padding-left: 1px;
 	}
+	.flex {
+			margin: 1%;
+			display: flex;
+			justify-content: space-around;
+	}
 	.buy {
 		position: absolute;
 		bottom: 0;
 		width: 40%;
 		margin: 20px 30%;
+		@include media(m){}
+		margin: 1% 30%;
 	}
 	.result {
 		display: inline-block;
@@ -609,12 +675,17 @@ $main-color: rgb(231, 163, 85);
 		display: inline-block;
 		margin-left: 5px;
 		width: 18%;
-	}
+		@include media(m){
+			width: 15%;
+		}
+		}
 	.pay-card-name {
 		display: inline-block;
 		width: 20%;
-		margin-left: 24%;
-		margin-bottom:20px;
+		margin-left: 5px;
+		@include media(m){
+			width: 30%;
+		}
 	}
 	.o {
 		position: absolute;
@@ -627,10 +698,16 @@ $main-color: rgb(231, 163, 85);
 		left: 20%;
 		text-align: center;
 		padding: auto 0;
-		z-index: 3;
+		z-index: 50;
 		font-size: 2rem;
 		color: orange;
 		backdrop-filter: brightness(10%);
+		@include media(m){
+			width: 100%;
+			height: 115%;
+			left: 0;
+			top: -15%;
+		}
 	}
 	.offButton {
 		color: orange;

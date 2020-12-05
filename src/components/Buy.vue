@@ -102,6 +102,10 @@ export default {
 		},
 		of(){
 			this.isUp = "down"
+			this.number01 = '0'
+			this.number02 = '0'
+			this.number03 = '0'
+			this.number04 = '0'
 		}
 	}
 }
@@ -186,6 +190,11 @@ button {
 }
 .fade-enter-to {
 	opacity: 1;
+}
+.buy-body {
+	top: 12%;
+	width: 100%;
+	height: 100%;
 }
 .buy-title {
 	margin: 1% auto;

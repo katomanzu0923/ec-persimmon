@@ -22,7 +22,7 @@
 				<transition name="fade">
 						<div v-if="isSeason == '2'" class="page">
 							<picture>
-								<source media="(max-width: 980px)" srcset="@/assets/summer02.png" id="kaki">
+								<source media="(max-width: 980px)" srcset="@/assets/summer2.png" id="kaki">
 								<img src="@/assets/kakisummer.png" alt="クリスは立って彼の娘エルバを保持します" id="kaki">
 							</picture>
 						</div>
@@ -34,8 +34,8 @@
 			<div class="left">
 				<transition name="fade">
 				<div v-if="isSeason == '2'">
-					<p class="left-text">梅雨を終えて暑い夏に</p>
-					<p class="left-text02">柿色までもう少し</p>
+					<p class="left-maintext02">梅雨を終えて暑い夏に</p>
+					<p class="left-subtext02">柿色までもう少し</p>
 				</div>
 				</transition>
 				<transition name="fade">
@@ -192,6 +192,8 @@ export default {
 .fade-enter-to, .fade-leave{
 	opacity: 1;
 }
+
+
 .right-image {
 		position: relative;
 		bottom: 0;
@@ -208,11 +210,14 @@ export default {
 		position: relative;
 		bottom: 0;
 		width: 70%;
-		right: 0;
+		margin-left: 30%;
 		@include media(m) {
+			position: absolute;
 			width: 100%;
-			bottom: 10%;
+			left: 0;
+			top: 10%;
 			height: 80%;
+			margin: unset;
 		}
 	}
 	.none01 {
@@ -244,11 +249,12 @@ export default {
 		@include media(m) {
 			position: absolute;
 			top: 10%;
-			height:80%;
+			height:90%;
 		}
 	}
 	.left {
 		position: absolute;
+		top: 0;
 		left: 0%;
 		width: 30%;
 		height: 80%;
@@ -258,31 +264,57 @@ export default {
 		@include media(m) {
 			writing-mode: unset;
 			width: 100%;
-			top: 0%;
+			height: 85%;
+			top: 10%;
 			font-size: 1.5rem;
 		}
 	}
 	.left-text {
 		position: absolute;
 		left: 30%;
-		bottom: 50%;
+		bottom: 40%;
 		@include media(m) {
-			top: 5%;
+			padding: 5%;
+			top: 0;
 			left: 0;
 			text-align: center;
 			bottom: unset;
 		}
 	}
-
-	.left-text02 {
+	.left-maintext02 {
+		position: absolute;
+		left: 30%;
+		bottom: 30%;
+		@include media(m) {
+			padding: 5%;
+			top: 0;
+			left: 0;
+			text-align: center;
+			bottom: unset;
+		}
+	}
+	.left-subtext02 {
 		position: absolute;
 		right: 10%;
-		bottom: 0;
+		bottom: -10%;
 		margin: 10%;
 		@include media(m) {
 			margin: unset;
+			padding: 2%;
 			right: 0;
-			bottom: 20%;
+			bottom: 0;
+		}
+	}
+	.left-text02 {
+		position: absolute;
+		right: 10%;
+		bottom: -10%;
+		margin: 10%;
+		@include media(m) {
+			margin: unset;
+			padding: 2%;
+			right: 0;
+			bottom: 0;
 		}
 	}
 	.right {
@@ -290,6 +322,7 @@ export default {
 		right: 0%;
 		width: 30%;
 		height: 95%;
+		top: 0;
     writing-mode: vertical-rl;
 		font-size: 2rem;
 		color: rgb(233, 155, 67);
@@ -303,7 +336,7 @@ export default {
 	}
 	.right-text {
 		position: absolute;
-		left: 5%;
+		left: 30%;
 		bottom: 30%;
 		@include media(m) {
 			padding: 5%;
