@@ -48,12 +48,12 @@
 				<div class="pay">
 					<div class="pay-name">
 						<label for="" class="bottom">お名前</label>
-						<input :class="[isNameCheck === true? 'input-red': 'input-blue']"  type="text" v-model="name" v-on:change="nameCheck()">
-						<div :class="[isNameCheck === true? 'input-name-red': 'input-name-blue']">{{nameResult}}</div><div></div>
+						<input :class="[isNameCheck === true? 'input-red': 'input-blue']"  type="text" v-model="name" placeholder="名前を入力してください" v-on:change="nameCheck()">
+						<div :class="[isNameCheck === true? 'input-name-red': 'input-name-blue']">{{nameResult}}</div>
 					</div>
 					<div class="pay-post">
 						<label for="" :class='{noa:noPost}' id="bottom">郵便番号</label>
-						<input :class="[isPostCheck === true? 'input-postred': 'input-postblue']" type="text" v-model="post" :disabled="noPost" v-on:change="postCheck()">
+						<input :class="[isPostCheck === true? 'input-red': 'input-postblue']" type="text" v-model="post" :disabled="noPost" v-on:change="postCheck()">
 						<div :class="[isPostCheck === true? 'input-post-red': 'input-post-blue']">{{postResult}}</div>
 					</div>
 					<div class="pay-house">
@@ -242,15 +242,16 @@
 			this.myTax = '0'
 			if (this.pay === 'クレジットカード(手数料0円)' ) {
 				this.isPay = '1'
-				this.addPrice = this.price
+				this.Price = this.price
 				this.checked = false
 			}else {
 				this.myTax = '300'
 				this.isPay = '2'
-				if (this.addPrice === this.price) {
-					this.addPrice = this.price +300
+				if (this.addprice === this.price+300){
+					this.addPrice = this.price
 				}else {
-					this.addPrice 
+					let taxPrice = this.price +300
+					this.addPrice = taxPrice
 				}
 			}
 		},
@@ -298,15 +299,11 @@ $breakpoints: (
 	opacity: 1;
 }
   .pa {
-		position: absolute;
 		display: inline-block;
-		left: 65%;
-		top: 30%;
-		@include media(m){
+		text-align: center;
 			position: unset;
 			display: block;
 			margin: 1% auto;
-		}
 	}
 	.noa {
 		color: rgba(0, 0, 0, 0.404);
@@ -405,6 +402,7 @@ $breakpoints: (
 		width: 80%;
 		margin-left: 10%;
 		@include media(m){
+			position: unset;
 			flex-direction: column;
 		}
 	}
@@ -434,7 +432,7 @@ $breakpoints: (
 		display: inline-block;
 		text-align: center;
 		display: grid;
-  place-items: center;
+		place-items: center;
 		width: 100%;
 		padding-top: 5%;
 		font-size: 1.5rem;
@@ -445,9 +443,13 @@ $breakpoints: (
 		margin: 0 1px;
 		width: 30%;
 		box-shadow: 0 0 5px 1px rgb(160, 152, 152);
+		position: relative;
 	}
 	.box-price {
 		padding: 5px;
+		@include media(m){
+			padding: 0;
+		}
 	}
 	.shipping {
 		display: block;
@@ -475,6 +477,7 @@ $breakpoints: (
 		display: flex;
 		flex-direction: column;
 		@include media(m){
+			position: unset;
 			margin: 5% auto; 
 		}
 	}
@@ -484,15 +487,16 @@ $breakpoints: (
 		padding: 1%;
 		position: relative;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 		}
 	}
 	.input-name-red {
 		color: red;
 		display: block;
-		position: absolute;
-		margin-left: 20%;
-		top: 70%;
+		margin-left: 30%;
+		@include media(m) {
+			font-size: 0.75rem;
+		}
 	}
 	.input-name-blue {
 		color: green;
@@ -507,15 +511,18 @@ $breakpoints: (
 		padding: 1%;
 		position: relative;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 		}
 	}
 	.input-post-red {
 		color: red;
 		display: block;
-		position: absolute;
 		margin-left: 22%;
 		top: 75%;
+		@include media(m) {
+			font-size: 0.75rem;
+			margin-left: 30%;
+		}
 	}
 	.input-post-blue {
 		color: green;
@@ -530,15 +537,18 @@ $breakpoints: (
 		padding: 1%;
 		position: relative;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 		}
 	}
 	.input-house-red {
 		color: red;
 		display: block;
-		position: absolute;
 		margin-left: 20%;
 		top: 75%;
+		@include media(m) {
+			font-size: 0.75rem;
+			margin-left: 30%;
+		}
 	}
 	.input-house-blue {
 		color: green;
@@ -553,15 +563,18 @@ $breakpoints: (
 		padding: 1%;
 		position: relative;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 		}
 	}
 	.input-phone-red {
 		color: red;
 		display: block;
-		position: absolute;
 		margin-left: 20%;
 		top: 75%;
+		@include media(m) {
+			font-size: 0.75rem;
+			margin-left: 30%;
+		}
 	}
 	.input-phone-blue {
 		color: green;
@@ -576,15 +589,19 @@ $breakpoints: (
 		padding: 1%;
 		position: relative;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 		}
 	}
 	.input-mail-red {
 		color: red;
 		display: block;
-		position: absolute;
 		margin-left: 20%;
 		top: 75%;
+		@include media(m) {
+			font-size: 0.75rem;
+			margin-left: 43%;
+			width: 80%;
+		}
 	}
 	.input-mail-blue {
 		color: green;
@@ -598,7 +615,7 @@ $breakpoints: (
 		border-bottom: 1px solid orange;
 		border-right: 1px solid orange;
 		@include media(m){
-			padding: 5% 0; 
+			padding: 1% 0; 
 			text-align: center;
 		}
 	}
@@ -608,9 +625,19 @@ $breakpoints: (
 		width: 20%;
 	}
 	.payed {
+		text-align: center;
 		display: inline;
 		color: red;
 		padding-left: 1px;
+	}
+	select {
+		margin-left: -20px;
+		@include media(m){
+			display: block;
+		padding: 0 10%;
+		width: 80%;
+		margin: 0 10%;
+		}
 	}
 	.flex {
 			margin: 1%;
@@ -622,6 +649,7 @@ $breakpoints: (
 		width: 40%;
 		margin: 20px 30%;
 		@include media(m){}
+		position: unset;
 		margin: 1% 30%;
 	}
 	.result {
@@ -645,10 +673,18 @@ $breakpoints: (
 	.input-blue {
 		border:solid 4px rgba(231, 130, 15, 0.493);
 		border:solid 2px 2px $main-color;
+		@include media(m){
+			font-size: 0.75rem;
+		}
 	}
 	.input-postred {
 		border:solid 4px rgba(235, 50, 4, 0.705);
 		margin-left: -15px;
+		@include media(m){
+			font-size: 0.5rem;
+			margin: 1%;
+		}
+		
 	}
 	.input-postblue {
 		margin-left: -15px;
@@ -657,10 +693,18 @@ $breakpoints: (
 	.input-mailred {
 		border:solid 4px rgba(235, 50, 4, 0.705);
 		margin-left: -60px;
+		@include media(m){
+			width: 40%;
+			margin-left: -30px;
+		}
 	}
 	.input-mailblue {
 		margin-left: -60px;
 		border:solid 4px rgba(231, 130, 15, 0.493);
+		@include media(m){
+			width: 40%;
+			margin-left: -30px;
+		}
 	}
 	#checkbox {
 		display: inline-block;
@@ -708,6 +752,10 @@ $breakpoints: (
 			top: -15%;
 		}
 	}
+	p {
+		color: rgb(72, 72, 80);
+		width: 60%;
+	}
 	.offButton {
 		color: orange;
 		border: 2px solid orange;
@@ -723,9 +771,15 @@ $breakpoints: (
 	}
 	.box-price {
 		text-align: center;
-		width: 90%;
-		margin: 5px;
-		padding: 5px;
+		width: 100%;
+		margin: 0;
+		padding: 5px 0;
 		border-top: 1px dotted $main-color;
+		@include media(m){
+			width: 100%;
+			margin: 0;
+			padding: 5px 0;
+			font-size: 0.75rem;
+		}
 	}
 </style>
