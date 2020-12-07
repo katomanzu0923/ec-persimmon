@@ -173,6 +173,9 @@ h1 {
 	border: 1px solid orange;
 	width: 100%;
 	padding: 1%;
+	@include media(m) {
+		padding: 1px 0;
+	}
 }
 .out {
 	position: absolute;
@@ -208,6 +211,7 @@ h1 {
 	border-bottom: none;
 	text-align: center;
 	@include media(m){
+		display: block;
 		width: 70%;
 		margin: 0 15%;
 	}

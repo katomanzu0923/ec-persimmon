@@ -265,7 +265,7 @@
 		},
 		all() {
 			this.isOver = 'up'
-			
+
 			setTimeout(this.auto, 3000,);
 		},
 		auto() {
@@ -415,7 +415,9 @@ $breakpoints: (
 		margin-top: 5%;
 		margin-bottom: 5%;
 		border-radius: 5px;
-		padding: 0 2%;
+		padding: 0 2%;@include media(m){
+			margin: 5% auto;
+		}
 	}
 	.totall-left {
 		display: flex;
@@ -466,16 +468,14 @@ $breakpoints: (
 		justify-content: center;
 	}
 	.pay {
-		position: absolute;
+		margin: 5% 5%;
+		top: 30%;
 		left: 5%;
 		width: 90%;
-		bottom: 10%;
 		display: flex;
 		flex-direction: column;
 		@include media(m){
-			position: absolute;
-			bottom: 5%;
-			margin: 1% auto; 
+			margin: 5% auto; 
 		}
 	}
 	.pay-name {
@@ -619,7 +619,6 @@ $breakpoints: (
 	}
 	.buy {
 		position: absolute;
-		bottom: 0;
 		width: 40%;
 		margin: 20px 30%;
 		@include media(m){}
@@ -692,10 +691,10 @@ $breakpoints: (
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 61%;
-		height: 91%;
-		top: 5%;
+		width: 60%;
 		left: 20%;
+		height: 115%;
+		top: -15%;
 		text-align: center;
 		padding: auto 0;
 		z-index: 50;

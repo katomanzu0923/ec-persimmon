@@ -22,14 +22,25 @@
 				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
 				<div class="buy-titles">傷なし富有柿（一ケース）</div>
 				<div class="price">
-					<label for="price">一つ3500円</label><input type="text" value="" v-model="number03" v-on:input="c()">個<br>
+					<label for="price">一つ3500円</label>
+					<select v-model="number03"  v-on:change="c()">
+						<option v-for="number in numbers" :key="number" :value="number">
+							{{ number }}
+						</option>
+					</select>
+					<div class="inline">ケース</div>
 				</div>
 			</div>
 			<div class="box">
 				<figure class="image"><img src="@/assets/kaki.png" alt=""></figure>
 				<div class="buy-titles">傷なし富有柿（一ケース）</div>
 				<div class="price">
-					<label for="price">一つ3000円</label><input type="text" value="" v-model="number04" v-on:input="d()">個<br>
+					<label for="price">一つ3000円</label><select v-model="number04"  v-on:change="d()">
+						<option v-for="number in numbers" :key="number" :value="number">
+							{{ number }}
+						</option>
+					</select>
+					<div class="inline">ケース</div><br>
 				</div>
 			</div>
 		</div>
@@ -62,40 +73,58 @@ export default {
 			middlePrice02:"0",
 			middlePrice03:"0",
 			middlePrice04:"0",
-			isUp: "down"
+			isUp: "down",
+			numbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "１０＋"]
 		}
 	},
 	methods: {
 		a() {
+			let limitNumber01 = (this.number01+this.number02)
+			if (this.number01 > 99 || limitNumber01 > 99) {
+				alert("99個以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
+				this.noPay = true,this.number01 = 0
+			}else {
 			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
 			this.middlePrice01 = (this.number01 * 500)
-			this.middlePrice02 = (this.number02 * 300)
-			this.middlePrice03 = (this.number03 * 3500) 
-			this.middlePrice04 = (this.number04 * 2000)
 			this.price = result
 			this.noPay = false
+			}
 		},
 		b() {
-			let number01 = this.number01
-			let number02 = this.number02
-			let number03 = this.number03
-			let number04 = this.number04
-			let result = (number03 * 3500) + (number04 * 2000) + (number01 * 500) + (number02 *300)+500
+			let limitNumber02 = (this.number01+this.number02)
+			if (this.number02 > 99 || limitNumber02 > 99) {
+				alert("99個以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
+				this.noPay = true,this.number02 = 0
+			}else {
+			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
 			this.middlePrice02 = (this.number02 * 300)
 			this.price = result
 			this.noPay = false
+			}
 		},
 		c() {
-			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
+			let limitNumber03 = (this.number03+ this.number04)
+			if (this.number03 === "１０＋" || limitNumber03 >= 10) {
+				this.noPay = true,this.number03 = 0
+				alert("10ケース以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
+			}else{
+				let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
 			this.middlePrice03 = (this.number03 * 3500)
 			this.price = result
 			this.noPay = false
+			}
 		},
 		d() {
-			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
-			this.middlePrice04 = (this.number04 * 2000)
+			let limitNumber04 = (this.number03+ this.number04)
+			if (this.number04 === "１０＋" || limitNumber04 >= 10) {
+				this.noPay = true,this.number04 = 0
+				alert("10ケース以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
+			}else{
+				let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
+			this.middlePrice04 = (this.number04 * 3500)
 			this.price = result
 			this.noPay = false
+			}
 		},
 		perches() {
 			this.isUp = 'up'
@@ -106,6 +135,7 @@ export default {
 			this.number02 = '0'
 			this.number03 = '0'
 			this.number04 = '0'
+			this.noPay = true
 		}
 	}
 }
@@ -182,6 +212,9 @@ button {
 		margin: 2% 10%;
 	}
 }
+select {
+	outline: none;
+}
 .fade-enter-active {
   transition: all 0.25s ease;
 }
@@ -252,5 +285,8 @@ button {
 	bottom: 0;
 	border-top: 1px dotted $main-color;
 	text-align: center;
+}
+.inline {
+	display: inline-block;
 }
 </style>

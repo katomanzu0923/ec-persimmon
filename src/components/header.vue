@@ -5,19 +5,19 @@
 				<img src="@/assets/fuyukaki.png" alt="" class="logo">
 			</div>
 			<div class="header-menu">
-				<button @click="currentComponet = 'top';  change_top()" id="top">
+				<button @click="currentComponet = 'top';  change_top()" class="top">
 					{{top_menu}}
 					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
 				</button>
-				<button @click="currentComponet = 'about'; change_about()" id="about">
+				<button @click="currentComponet = 'about'; change_about()" class="about">
 					{{about_menu}}
 					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
 				</button>
-				<button @click="currentComponet = 'buy'; change_buy()" id="buy">
+				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
 					{{buy_menu}}
 					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
 				</button>
-				<button @click="currentComponet = 'contact';  change_contact()" id="contact">
+				<button @click="currentComponet = 'contact';  change_contact()" class="contact">
 					{{contact_menu}}
 					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
 				</button>
@@ -160,6 +160,7 @@ $breakpoints: (
   }
 	button:focus {
 		background: transparent;
+		border-radius: 10px;
 	}
 	p {
 		padding: 1%;
@@ -230,7 +231,7 @@ $breakpoints: (
 			width: 100%;
 			color:$main-color;
 			border-top: 1px solid rgb(233, 153, 4);
-			z-index: 4;
+			z-index: 6;
 		}
 	}
 	.top	{
