@@ -4,7 +4,7 @@
 			<p>送信が完了しました。</p>
 		</div>
 		<div class="contact-title">
-			<h1>お問いわせ先</h1>
+			<h1>お問い合わせ先</h1>
 		</div>
 		<div class="contact">
 			<div class="contact-lien">
@@ -135,7 +135,7 @@ textarea {
 	width: 60%;
 	margin-bottom: 2%;
 	outline: none;
-	border:1px solid white;
+	border:1px solid $main-color;
 	box-shadow: 0 0 1px 1px rgba(214, 108, 8, 0.527);
 }
 
@@ -143,7 +143,7 @@ input {
 	display: block;
 	outline: none;
 	background-color: white;
-	border:1px solid white;
+	border:1px solid $main-color;
 	box-shadow: 0 0 1px 1px rgba(214, 108, 8, 0.527);
 	@include media(m){
 		width: 50%;
