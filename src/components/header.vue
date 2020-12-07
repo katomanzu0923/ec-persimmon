@@ -160,7 +160,6 @@ $breakpoints: (
   }
 	button:focus {
 		background: transparent;
-		border-radius: 10px;
 	}
 	p {
 		padding: 1%;

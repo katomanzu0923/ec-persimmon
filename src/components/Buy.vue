@@ -82,7 +82,7 @@ export default {
 			let limitNumber01 = (this.number01+this.number02)
 			if (this.number01 > 99 || limitNumber01 > 99) {
 				alert("99個以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
-				this.noPay = true,this.number01 = 0
+				this.noPay = true,this.number01 = 0,this.number02 = 0,this.number03 = 0,this.number04 = 0
 			}else {
 			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
 			this.middlePrice01 = (this.number01 * 500)
@@ -94,7 +94,7 @@ export default {
 			let limitNumber02 = (this.number01+this.number02)
 			if (this.number02 > 99 || limitNumber02 > 99) {
 				alert("99個以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
-				this.noPay = true,this.number02 = 0
+				this.noPay = true,this.number01= 0,this.number02 = 0,this.number03 = 0,this.number04 = 0
 			}else {
 			let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
 			this.middlePrice02 = (this.number02 * 300)
@@ -105,7 +105,7 @@ export default {
 		c() {
 			let limitNumber03 = (this.number03+ this.number04)
 			if (this.number03 === "１０＋" || limitNumber03 >= 10) {
-				this.noPay = true,this.number03 = 0
+				this.noPay = true,this.number01 = 0,this.number02 = 0,this.number03 = 0,this.number04 = 0
 				alert("10ケース以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
 			}else{
 				let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
@@ -117,7 +117,7 @@ export default {
 		d() {
 			let limitNumber04 = (this.number03+ this.number04)
 			if (this.number04 === "１０＋" || limitNumber04 >= 10) {
-				this.noPay = true,this.number04 = 0
+				this.noPay = true,this.number01 = 0,this.number02 = 0,this.number03 = 0,this.number04 = 0
 				alert("10ケース以上ご購入のお客様は別途、お問い合わせフォームからご連絡ください")
 			}else{
 				let result = (this.number03 * 3500) + (this.number04 * 2000) + (this.number01 * 500) + (this.number02 *300)+500
