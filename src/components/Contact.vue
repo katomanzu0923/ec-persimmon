@@ -1,7 +1,9 @@
 <template>
 	<div class="contact-body">
 		<div v-if="isOut" class="out">
-			<p>送信が完了しました。</p>
+			<p>{{name}}様。ありがとうございます。</p>
+			<p class="claim">{{content}}</p>
+			<p>といった内容で御承りました。</p>
 		</div>
 		<div class="contact-title">
 			<h1>お問い合わせ先</h1>
@@ -27,13 +29,14 @@
 				<textarea name="" id="content" cols="30" rows="10" v-model="content" :disabled="textChecking" v-on:change="contentCheck()"></textarea>
 			</div>
 			<div class="cotact-send">
-				<button @click="out()" :class="{up:!sendChecking}" :disabled="sendChecking">送信</button>
+				<button @click="submit()" :class="{up:!sendChecking}" :disabled="sendChecking">送信</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
 	data(){
 		return {
@@ -78,9 +81,25 @@ export default {
 				this.contentResult = "大丈夫です",this.change03 = true,this.sendChecking = false,this.contactText = '内容を確認して送信ボタンを押しましょう！'
 			}
 		},
-		out() {
+		submit() {
+			axios.post(
+				"https://firestore.googleapis.com/v1/projects/ec-persimmon-20c87/databases/(default)/documents/comments",
+				{
+					fields: {
+						name: {
+							stringValue:this.name
+						},
+						mail: {
+							stringValue:this.mail
+						},
+						content: {
+							stringValue:this.content
+						}
+					}
+				}
+			);
 			this.isOut = true
-			setTimeout(this.auto, 3000,);
+			setTimeout(this.auto, 5000,);
 		},
 		auto() {
 			this.isOut = false
@@ -160,6 +179,9 @@ h1 {
 		font-size: 1.5rem;
 	}
 }
+p{ 
+	display: block;
+}
 .contact-body {
 	display: block;
 	@include media(m){
@@ -187,6 +209,7 @@ h1 {
 	text-align: center;
 	line-height: middle;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-size: 2rem;
@@ -338,5 +361,10 @@ h1 {
 }
 #f {
 	color: none;
+}
+.claim {
+	margin: 5%;
+	background:grey;
+	padding: 5%;
 }
 </style>
