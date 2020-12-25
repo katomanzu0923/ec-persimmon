@@ -5,7 +5,7 @@
 実家の家業を意識して、将来使用する可能性のあるECサイトを作成。
 
 ## Demo
-Top
+Top<br>
 Topページのgifはデータサイズの関係上マウスオーバーにてご確認ください*
 https://gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c
 
