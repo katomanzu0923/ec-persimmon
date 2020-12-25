@@ -9,7 +9,6 @@
 Top
 [![Image from Gyazo](https://i.gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c.gif)](https://gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c)
 
-
 商品購入ページ（購入前）
 [![Image from Gyazo](https://i.gyazo.com/8e7da9a9758de7efdbebd073b73adf93.gif)](https://gyazo.com/8e7da9a9758de7efdbebd073b73adf93)
 
