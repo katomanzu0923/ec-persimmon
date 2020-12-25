@@ -5,9 +5,9 @@
 実家の家業を意識して、将来使用する可能性のあるECサイトを作成。
 
 ## Demo
-
 Top
-[![Image from Gyazo](https://i.gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c.gif)](https://gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c)
+Topページのgifはデータサイズの関係上マウスオーバーにてご確認ください*
+https://gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c
 
 商品購入ページ（購入前）
 [![Image from Gyazo](https://i.gyazo.com/8e7da9a9758de7efdbebd073b73adf93.gif)](https://gyazo.com/8e7da9a9758de7efdbebd073b73adf93)
