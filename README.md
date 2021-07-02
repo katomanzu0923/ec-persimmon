@@ -6,18 +6,13 @@
 
 ## Demo
 Top<br>
-Topページのgifはデータサイズの関係上マウスオーバーにてご確認ください*
-https://gyazo.com/c1bb0e77048b3efbdd36b16300cedc8c
-
-商品購入ページ（購入前）
-[![Image from Gyazo](https://i.gyazo.com/8e7da9a9758de7efdbebd073b73adf93.gif)](https://gyazo.com/8e7da9a9758de7efdbebd073b73adf93)
-
-商品購入ページ（購入後）
-[![Image from Gyazo](https://i.gyazo.com/6a6bdfd9a602ec64514d7233e49d96f4.gif)](https://gyazo.com/6a6bdfd9a602ec64514d7233e49d96f4)
-
-お問い合わせフォーム
-[![Image from Gyazo](https://i.gyazo.com/f144ab7c9aeb110e1e826dd69a7657bb.gif)](https://gyazo.com/f144ab7c9aeb110e1e826dd69a7657bb)
-
+[![Image from Gyazo](https://i.gyazo.com/9147fb44a9e0799324fb846cab6e8950.png)](https://gyazo.com/9147fb44a9e0799324fb846cab6e8950)
+商品一覧ページ
+[![Image from Gyazo](https://i.gyazo.com/ead412779fc81a979ec76e62f4a576a4.png)](https://gyazo.com/ead412779fc81a979ec76e62f4a576a4)
+商品購入ページ
+[![Image from Gyazo](https://i.gyazo.com/26788b73542a7d3a0bdc51521d4ac17e.png)](https://gyazo.com/26788b73542a7d3a0bdc51521d4ac17e)
+フッター
+[![Image from Gyazo](https://i.gyazo.com/7bebbc5096e08eae66ae3c3d957264a6.png)](https://gyazo.com/7bebbc5096e08eae66ae3c3d957264a6)
 ## URL
 
 https://ec-persimmon.netlify.app
