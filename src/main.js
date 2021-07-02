@@ -5,6 +5,8 @@ import Top from './components/Top.vue'
 import Buy from './components/Buy.vue'
 import About from './components/About.vue'
 import Contact from './components/Contact.vue'
+import Perches from './components/Perches.vue'
+import Footer from './components/Footer.vue'
 import router from "./router"
 
 Vue.config.productionTip = false
@@ -13,8 +15,8 @@ Vue.component("Top", Top)
 Vue.component("Buy", Buy)
 Vue.component("About", About)
 Vue.component("Contact", Contact)
-
-
+Vue.component("Perches", Perches)
+Vue.component("Footer", Footer)
 
 
 

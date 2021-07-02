@@ -1,48 +1,6 @@
 <template>
-	<div class="header">
-		<div class="header-body">
-			<div class="header-top" @click="currentComponet='Top'">
-				<img src="@/assets/fuyukaki.png" alt="" class="logo">
-			</div>
-			<div class="header-menu">
-				<button @click="currentComponet = 'top';  change_top()" class="top">
-					{{top_menu}}
-					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
-				</button>
-				<button @click="currentComponet = 'about'; change_about()" class="about">
-					{{about_menu}}
-					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
-				</button>
-				<button @click="currentComponet = 'buy'; change_buy()" class="buy">
-					{{buy_menu}}
-					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
-				</button>
-				<button @click="currentComponet = 'contact';  change_contact()" class="contact">
-					{{contact_menu}}
-					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
-				</button>
-			</div>
-		</div>
-		<div class="footer-menu-mobile">
-				<button @click="currentComponet = 'top';  change_top()" :class="[topOn === true? 'topChange': 'top']">
-					{{top_menu}}
-					<div v-if="isActiveTop ===  'off'" class="underDown"></div><div v-else class="underUp"></div>
-				</button>
-				<button @click="currentComponet = 'about'; change_about()" :class="[aboutOn === true? 'aboutChange': 'about']">
-					{{about_menu}}
-					<div v-if="isActiveAbout ===  'off'" class="underDown"></div><div v-else class="underAbout"></div>
-				</button>
-				<button @click="currentComponet = 'buy'; change_buy()" :class="[buyOn === true? 'buyChange': 'buy']">
-					{{buy_menu}}
-					<div v-if="isActiveBuy === 'off'" class="underDown"></div><div v-else class="underBuy"></div>
-				</button>
-				<button @click="currentComponet = 'contact';  change_contact()" :class="[contactOn === true? 'contactChange': 'contact']">
-					{{contact_menu}}
-					<div v-if="isActiveContact ===  'off'" class="underDown"></div><div v-else class="underContact"></div>
-				</button>
-			</div>
-
-			<component :is="currentComponet" class="contents">f</component>
+	<div class="header" v-on:kei="keii()">
+				<img src="@/assets/kakilogo03.png" alt="" class="logo">
 	</div>
 </template>
 
@@ -64,6 +22,7 @@ export default {
 			buyOn:false,
 			contactOn:false,
 			aboutOn:false,
+			visible: false,
 		}
 	},
 	props: {
@@ -72,63 +31,18 @@ export default {
 			default: 0
 		}
 	},
+	created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
 	methods: {
-		change_top() {
-			this.top_menu = "Top",
-			this.buy_menu = "商品一覧",
-			this.about_menu = "富有柿について",
-			this.contact_menu = "お問い合わせ"
-			this.isActiveTop = "on"
-			this.isActiveBuy = "off"
-			this.isActiveAbout = "off"
-			this.isActiveContact = "off"
-			this.topOn = true
-			this.buyOn = false
-			this.contactOn = false
-			this.aboutOn = false
-		},
-		change_buy()  {
-			this.top_menu = "Top",
-			this.buy_menu = "商品一覧",
-			this.about_menu = "富有柿について",
-			this.contact_menu = "お問い合わせ"
-			this.isActiveTop = "off",
-			this.isActiveBuy = "on",
-			this.isActiveAbout = "off"
-			this.isActiveContact = "off"
-			this.topOn = false
-			this.buyOn = true
-			this.contactOn = false
-			this.aboutOn = false
-		},
-		change_about()  {
-			this.top_menu = "Top",
-			this.buy_menu = "商品一覧",
-			this.about_menu = "富有柿について",
-			this.contact_menu = "お問い合わせ"
-			this.isActiveTop = "off",
-			this.isActiveBuy = "off",
-			this.isActiveAbout = "on"
-			this.isActiveContact = "off"
-			this.topOn = false
-			this.buyOn = false
-			this.contactOn = false
-			this.aboutOn = true
-		},
-		change_contact()  {
-			this.top_menu = "Top",
-			this.buy_menu = "商品一覧",
-			this.about_menu = "富有柿について",
-			this.contact_menu = "お問い合わせ",
-			this.isActiveTop = "off",
-			this.isActiveBuy = "off",
-			this.isActiveAbout = "off"
-			this.isActiveContact = "on"
-			this.topOn = false
-			this.buyOn = false
-			this.contactOn = true
-			this.aboutOn = false
-		}
+		handleScroll() {
+      this.sY = window.scrollY;
+      if (this.sY >2) {
+				this.number = this.sY
+      } else if (this.sY < 1) {
+        this.number = this.sY
+      }
+    },
 	}
 }
 </script>
@@ -136,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 //scss start
 $main-color: rgb(231, 163, 85);
-$sub-color: rgb(230, 133, 23);
+$sub-color: #f8d8a4;
 $breakpoints: (
 	m: "only screen and (max-width: 980px)",
 	pc: "only screen and (max-width: 1199px)",
@@ -179,179 +93,17 @@ $breakpoints: (
 		}
 	}
 	.logo {
+		margin:  0 40%;
 		width: 20%;
-		height: 70px;
 		@include media(m) {
 			min-width: 30%;
 			height: 5%;
 		}
 	}
-  .header-body {
-		position: relative;
-		height: 115px;
-		color: $main-color;
-		width: 100%;
-		text-align: center;
-		border-bottom:1px solid grey ;
-		@include media(m) {
-			position: absolute;
-			display: block;
-			height: 10%;
-			z-index: 3;
-		}
-	}
-	
-	.header-menu {
-		position: absolute;
-		display: flex;
-		width: 50%;
-		right: 0;
-		justify-content: start;
-		margin: 2% 0;
-		align-content: space-around;
-		color:$main-color;
-		top: 0;
-		height: 10px;
-		@include media(m) {
-			display: none;
-		}
-	}
-	.footer-menu-mobile {
-		display: none;
-		@include media(m) {
-			position: absolute;
-			position: fixed;
-		align-content: space-around;
-		justify-content: center;
-			bottom: 0;
-			left: 0;
-			display: block;
-			padding-top: 1%;
-			width: 100%;
-			color:$main-color;
-			border-top: 1px solid rgb(233, 153, 4);
-			z-index: 6;
-		}
-	}
-	.top	{
-		border-left: 1px solid $main-color;
-		border-right: 1px solid $main-color;
-		position: relative;
-		color:$main-color;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-			border-left:unset;
-		}
-		
-	}
-	.topChange {
-		color: green;
-		border-left: 1px solid $main-color;
-		border-right: 1px solid $main-color;
-		position: relative;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-			border-left:unset;
-		}
-	}
-	
-	
-	.underDwon::before {
-		filter: opacity(0);
-	}
-	.underUp::before { 
-	content:"";
-   display:block;
-   width:80%;
-   height:3px;
-   background-color:$sub-color;
-   position:absolute;
-   bottom:-10px;
-   left:10%;filter: opacity(100%);@include media(m) {display: none;}
-	}
 
-	.buy {
-		border-left: 1px solid $main-color;
-		border-right: 1px solid $main-color;
-		position: relative;
-		color:$main-color;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
+	.header{
+		padding: 0;
+		border-bottom: 3px solid #51925c;
 	}
-	.buyChange {
-		border-left: 1px solid $main-color;
-		border-right: 1px solid $main-color;
-		position: relative;
-		color:green;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
-	}
-	.underBuy::before { 
-	content:"";
-   display:block;
-   width:80%;
-   height:3px;
-   background-color:$sub-color;
-   position:absolute;
-   bottom:-10px;
-   left:10%;filter: opacity(100%);@include media(m) {display: none;}
-	}
-	.about {
-		position: relative;
-		color:$main-color;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
-	}
-	.aboutChange {
-		position: relative;
-		color:green;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
-	}
-	.underAbout::before { 
-	content:"";
-   display:block;
-   width:80%;
-   height:3px;
-   background-color:$sub-color;
-   position:absolute;
-   bottom:-10px;
-   left:10%;filter: opacity(100%);@include media(m) {display: none;}
-	}
-	.contact {
-		position: relative;
-		color:$main-color;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
-	}
-	.contactChange {
-		position: relative;
-		color:green;
-		padding-bottom: 40px;
-		@include media(m) {
-			padding: unset;
-		}
-	}
-	.underContact::before { 
-	content:"";
-   display:block;
-   width:80%;
-   height:3px;
-   background-color: $sub-color;
-   position:absolute;
-   bottom:-10px;
-   left:10%;filter: opacity(100%);@include media(m) {display: none;}
-	}
+  
 </style>

@@ -1,8 +1,23 @@
 <template>
 <div>
-		<Header class="fix"></Header>
+		<Header  @kei="keii()"></Header>
+		<Top class="mar"></Top>
+		<About class="fix"></About>
+		<Buy class="fix"></Buy>
+		<Perches class="fix"></Perches>
+		<Footer></Footer>
 </div>
 </template>
+
+<script>
+export default {
+	methods: {
+		keii(){
+			alert(1)
+		}
+	}
+}
+</script>
 
 <style lang="scss" scoped>
   $breakpoints: (
@@ -14,9 +29,10 @@
 		@content;
 	}
 }
-.fix {
-	@include media(m) {
-			display: fixed;
-		}
+.fix{
+	margin-top: 100px;
+}
+
+.mar{
 }
 </style>
